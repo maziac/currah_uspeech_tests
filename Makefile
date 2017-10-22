@@ -3,7 +3,7 @@
 # asmz80 is a link to z80asm. Just adjust ASSEMBLER, LINKER to your needs.
 # appmake will create the tap or sna binaries.
 
-PROJ = currah_uspeech_test
+PROJ = currah_uspeech_tests
 INC_FILES = constants.inc
 ASM_FILES = ui.asm tests1.asm tests2.asm common.asm
 OBJ_FILES = $(subst .asm,.o,$(ASM_FILES))

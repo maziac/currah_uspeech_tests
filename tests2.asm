@@ -13,31 +13,58 @@
 ; - 
 
 
-; sub routine to speak an "aa" allophone.
-; It does not make a call to ddress 3000h
+; sub routine to speak an "aa" allophone with intonation.
 ct_speak_aa:
 	; wait on sp0256
 	call ct_wait_on_sp0256
 	; speak
 	ld a,18h	; /AA/
+	ld hl,(address_3000h)
+	ld (hl),a
 	call write_1000h
 	ret
 
 
-; speaks "aahh" with a mem write to 1001h.
+; speaks "aahh" with a mem write to 1XXXh (i.e. 1001h, 1002h, 1004h, etc).
 ; This is to test mirroring.
 ; Ends on key press.
 ct_aahh_mirror:
-	; Enable Currah ROM and registers
-	call turn_currah_on
-	; Initialize test
-	call set_read_write_defaults
-	; Test mirror at 1001h
-	ld hl,1001h
-	ld (address_1000h),hl
-
 	; check key release
 	call ct_wait_on_key_release
+	; Reset 3000h
+	ld hl,3000h
+	ld (address_3000h),hl
+	; Test mirror at next address (i.e. shift bits)
+	ld de,(address_1000h)
+	or a
+	ld hl,1000h	; test on overflow
+	sbc hl,de
+	jr nz,ct_aahh_mirror_shift
+	inc e	; de=1001h, set rightmost bit
+	jr ct_aahh_mirror_l2
+ct_aahh_mirror_shift:
+	; shift
+	sla e
+	rl d
+	ld a,d
+	and 00001111b
+	or 00010000b
+	ld d,a
+ct_aahh_mirror_l2:	
+	ld (address_1000h),de
+	push de
+	
+ct_aahh_mirror_l3:
+	; print
+	ld de,text_aahh_mirror_address
+	ld bc,#text_aahh_mirror_address_end-text_aahh_mirror_address
+	call print_string
+	pop bc
+	call print_hex_number	
+
+	; Enable Currah ROM and registers
+	call turn_currah_on
+
 ct_aahh_mirror_l1:
 	; speak "aa"
 	call ct_speak_aa
@@ -52,143 +79,50 @@ ct_aahh_mirror_silence:
 	ld (1000h),a
 	ret
 	
-
-; Tests for 1000h mirrors.
-; I.e. it compares each address between 1000h and 1fffh with the
-; ROM (the ZX Spectrum ROM).
-; If an address value is not equal this is indicated.
-ct_1000h_mirror:
-	; start address
-	ld hl,1000h
-	ld de,2000h	; count (1000h-1fffh)
-	ld bc,0	; count the values
-
-	; Turn busy bit on
-	call turn_currah_on
-	ld a,18h	; /aa/
-	ld (1000h),a
-	
-ct_1000h_mirror_loop:
-	; disable currah
-	call turn_currah_off
-	; get Spectrum ROM value
-	ld a,(hl)
-	; enable currah
-	push af
-	call turn_currah_on
-	pop af
-	; compare
-	cp (hl)
-	jr z,ct_1000h_mirror_l1
-	; not equal, count
-	inc bc
-ct_1000h_mirror_l1:	
-	; next
-	inc hl
-	dec de
-	ld a,d
-	or e
-	jr nz, ct_1000h_mirror_loop
-	
-	; silence
-	xor a
-	ld (1000h),a
-	
-	; Print text
-	push bc
-	ld de,text_mirror_count
-	ld bc,#text_mirror_count_end-text_mirror_count
-	call print_string
-	pop bc
-
-	; print the number of occurences
-	call print_number	
-	ret
-	
-	
 ; print at left lower corner
-text_mirror_count:
+text_aahh_mirror_address:
 	defb AT,20,1
-	defb "Mirror count="
-text_mirror_count_end:
+	defb "                            "
+	defb AT,20,1
+	defb "Used address="
+text_aahh_mirror_address_end:
 	
 
-
-
-; Tests the area 1000h to 4000h if currah is turned on.
-; Writes the values to the screen.
-; In fact, as these are mirrors, it does only write a value
-; if it changed compared to the previous one. So the number is reduced
-; significantly.
-ct_1000h_values:
-	; Print text
-	ld de,text_read_values
-	ld bc,#text_read_values_end-text_read_values
-	call print_string
-
-	; start address
+; speaks "aahh" with a mem write to 1000h and intonation set to 
+; 3XXXh (i.e. 3001h, 3002h, 3004h, etc).
+; This is to test mirroring.
+; Ends on key press.
+ct_aahh_3000_mirror:
+	; check key release
+	call ct_wait_on_key_release
+	; Reset 1000h
 	ld hl,1000h
-	ld de,3000h	; count (1000h-3fffh)
-	ld b,6	; print max 4 values
-
-	; Turn busy bit on
-	call turn_currah_on
-	ld a,18h	; /aa/
-	ld (1000h),a
-	
-	ld a,(hl)	; previous value
-	xor 10101010b	; make sure the first value is printed
-	ld c,a
-	
-ct_1000h_values_loop:
-	ld a,c
-	ld c,(hl)
-	cp c	; compare with previous value
-	jr z,ct_1000h_values_same
-	
-	; not equal, print
-	push bc
-	ld b,0
-	call print_number
-	pop bc
-	
-	; check if max count exceeded
-	dec b
-	jr z,ct_1000h_values_end
-	
-	; print a space
-	push bc
-	ld a,' '
-	rst 10h
-	
-	; turn currah on again
-	call turn_currah_on
-	pop bc
-	ld a,c	; previous value
-	
-ct_1000h_values_same:	
-	; next
-	inc hl
-	dec de
+	ld (address_1000h),hl
+	; Test mirror at next address (i.e. shift bits)
+	ld de,(address_3000h)
+	or a
+	ld hl,3000h	; test on overflow
+	sbc hl,de
+	jr nz,ct_aahh_3000_mirror_shift
+	inc e	; de=3001h, set rightmost bit
+	jr ct_aahh_3000_mirror_l2
+ct_aahh_3000_mirror_shift:
+	; shift
+	sla e
+	rl d
 	ld a,d
-	or e
-	jr nz, ct_1000h_values_loop
-	
-ct_1000h_values_end:
-	; silence
-	xor a
-	ld (1000h),a
-	
-	ret
-	
-	
-; print at left lower corner
-text_read_values:
-	defb AT,20,1
-	defb "Values="
-text_read_values_end:
-	
+	and 00001111b
+	or 00110000b
+	ld d,a
+ct_aahh_3000_mirror_l2:	
+	ld (address_3000h),de
+	push de
 
+	; Set to 3001h for comparison
+	call turn_currah_on
+	ld (3001h),a
+	
+	jp ct_aahh_mirror_l3
 
 
 

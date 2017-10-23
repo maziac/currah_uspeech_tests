@@ -1,2 +1,2 @@
-listload "currah_uspeech_test.list"
+listload "currah_uspeech_tests.list"
 go

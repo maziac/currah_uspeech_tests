@@ -249,8 +249,8 @@ screen_table:
 	defw currah_tests2_text, currah_tests2_text_end-currah_tests2_text
 	; Tests
 	defw ct_aahh_mirror
-	defw ct_1000h_mirror
-	defw ct_1000h_values
+	defw ct_aahh_3000_mirror
+	defw 0
 	defw ct_test_busy_aa
 	defw ct_test_busy_sh
 	defw 0
@@ -293,18 +293,18 @@ defc ct_start_x=2
 	defb AT,ct_start_y+10,ct_start_x
 	defb "<SPACE> - next screen"
 	defb AT,20,3
-	defb "Currah MicroSpeech Tests v1.0"
+	defb "Currah MicroSpeech Tests v1.100"
 	defb AT,21,8
 	defb "2017, written by T.Busse"
 currah_tests1_text_end:
 
 currah_tests2_text:
 	defb AT,ct_start_y+0,ct_start_x
-	defb "0: \"aahh\" at 1001h"
+	defb "0: \"aahh\" at 1XXXh"
 	defb AT,ct_start_y+1,ct_start_x
-	defb "1: 1000h-3000h read - compare"
+	defb "1: \"aahh\" with 3XXXh"
 	defb AT,ct_start_y+2,ct_start_x
-	defb "2: 1000h-4000h read - values"
+	defb "2: -"
 	defb AT,ct_start_y+3,ct_start_x
 	defb "3: busy flag (\"aa\" only once)"
 	defb AT,ct_start_y+4,ct_start_x

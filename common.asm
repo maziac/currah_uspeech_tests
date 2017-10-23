@@ -152,3 +152,43 @@ print_string:
 print_number:
 	call turn_currah_off
 	jp print_number_address
+
+; prints a hex number in bc.
+print_hex_number:
+	call turn_currah_off
+	push bc
+	ld a,b
+	srl a
+	srl a
+	srl a
+	srl a
+	call print_hex_a
+	pop bc
+	ld a,b
+	and a,0fh
+	push bc
+	call print_hex_a
+	pop bc
+	push bc
+	ld a,c
+	srl a
+	srl a
+	srl a
+	srl a
+	call print_hex_a
+	pop bc
+	ld a,c
+	and a,0fh
+	jp print_hex_a
+	
+	
+print_hex_a:
+	add '0'
+	cp '9'+1
+	jr c,print_hex_number_l1
+	add 'A'-'0'
+print_hex_number_l1:
+	rst 10h
+	ret
+	
+	

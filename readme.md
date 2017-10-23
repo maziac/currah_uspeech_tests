@@ -40,7 +40,7 @@ or with an emulator.
 
 ## debugging
 
-Please note that the make file also produces a script file for debugging with mess.
+Please note that the makefile also produces a script file for debugging with mess.
 I.e. if you put a "; ABP" at the end of a line in the assembler sources a 
 dbg_script.dbg is created that already sets the correct breakpoints.
 If you want to add custom options put them in debug.scpt.
@@ -48,11 +48,11 @@ If you want to add custom options put them in debug.scpt.
 Mess needs to be started with the options "-debug -debugscript dbg_script.dbg".
 
 
-# The Findings
+# The uSpeech Findings
 
 ## The 0038h address
 
-*Every* access to 0038h will toggle the ROM and the access to registers 1000h, 3000h and 3001h.
+_Every_ access to 0038h will toggle the ROM and the access to registers 1000h, 3000h and 3001h.
 I.e.
 ~~~
 ld bc,0038h
@@ -102,7 +102,7 @@ The busy bit (Bit 0 of 1000h) is set and immmediately reset regularly if no new 
 Adress 1000h has mirrors, e.g. one can use 1001h instead.
 
 
-## "Best" way to use the uSpeech from Assembler
+# "Best" way to use the uSpeech from Assembler
 
 If the uSpeech ROM is enabled the ZX Spectrum ROM is inaccessible.
 So best is to enable the uSpeech ROM only for a short while when accessing the uSpeech registers (1000h, 3000h and 3001h) and then turn it off again.

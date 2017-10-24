@@ -68,7 +68,7 @@ and, of course, the opcode fetch at address 0038h, all will toggle ROM and acces
 ## The uSpeech ROM mirroring
 
 The uSpeech 2k ROM (0-07ffh) is mirrored at 0800h-0fffh.
-If the uSpeech ROM is enabled the original ZX Spectrum is not accessible, i.e. the addresses 1000h-4000h do not contain ZX Spectrum ROM when read.
+If the uSpeech ROM is enabled the original ZX Spectrum is not accessible, i.e. the addresses 1000h-3fffh do not contain ZX Spectrum ROM when read.
 
 
 ## Intonation

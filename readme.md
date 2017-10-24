@@ -90,9 +90,8 @@ The other bits also change their value over time. But the purpose of these bits 
 
 Writing to address 1000h will make uSpeech HW "speak" the written allophone.
 Normally, after the last allophone a pause (e.g. 0) should be written.
-If that is not done the last allophone is looped. But not the complete allophone but only the repetitive part.
-I.e. "/AA/" will repeated as a continuous "AAAAAAAAAAAAA". "/SH/" will be repeated as "SHHHHHHHH".
-Only the last part of the allophone is repeated.
+If that is not done the last allophone is looped. 
+E.g. "/AA/" will repeated as a continuous "AAAAAAAAAAAAA".
 
 The busy bit (Bit 0 of 1000h) is set and immmediately reset regularly if no new allophone is written.
 

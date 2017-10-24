@@ -186,7 +186,7 @@ print_hex_a:
 	add '0'
 	cp '9'+1
 	jr c,print_hex_number_l1
-	add 'A'-'0'
+	add 'A'-'0'-10
 print_hex_number_l1:
 	rst 10h
 	ret

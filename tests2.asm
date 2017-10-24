@@ -89,7 +89,8 @@ text_aahh_mirror_address_end:
 	
 
 ; speaks "aahh" with a mem write to 1000h and intonation set to 
-; 3XXXh (i.e. 3001h, 3002h, 3004h, etc).
+; 3XXXh (i.e. 3001h, 3002h, 3004h, 3008h, etc).
+; Used to test mainly the even addresses.
 ; This is to test mirroring.
 ; Ends on key press.
 ct_aahh_3000_mirror:
@@ -112,7 +113,7 @@ ct_aahh_3000_mirror_shift:
 	rl d
 	ld a,d
 	and 00001111b
-	or 00110000b
+	or  00110000b
 	ld d,a
 ct_aahh_3000_mirror_l2:	
 	ld (address_3000h),de
@@ -121,6 +122,45 @@ ct_aahh_3000_mirror_l2:
 	; Set to 3001h for comparison
 	call turn_currah_on
 	ld (3001h),a
+	
+	jp ct_aahh_mirror_l3
+	
+
+; speaks "aahh" with a mem write to 1000h and intonation set to 
+; 3XXXh (i.e. 3001h, 3003h, 3005h, 3009h, etc).
+; Used to test mainly the odd addresses.
+; This is to test mirroring.
+; Ends on key press.
+ct_aahh_3001_mirror:
+	; check key release
+	call ct_wait_on_key_release
+	; Reset 1000h
+	ld hl,1000h
+	ld (address_1000h),hl
+	; Test mirror at next address (i.e. shift bits)
+	ld de,(address_3000h)
+	or a
+	ld hl,3fffh	; test on overflow
+	sbc hl,de
+	jr nz,ct_aahh_3001_mirror_shift
+	ld de,3000h
+	jr ct_aahh_3001_mirror_l2
+ct_aahh_3001_mirror_shift:
+	; shift
+	scf	; set carry flag
+	rl e
+	rl d
+	ld a,d
+	and 00001111b
+	or  00110000b
+	ld d,a
+ct_aahh_3001_mirror_l2:	
+	ld (address_3000h),de
+	push de
+
+	; Set to 3000h for comparison
+	call turn_currah_on
+	ld (3000h),a
 	
 	jp ct_aahh_mirror_l3
 

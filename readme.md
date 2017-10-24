@@ -102,6 +102,13 @@ The busy bit (Bit 0 of 1000h) is set and immmediately reset regularly if no new 
 Adress 1000h has mirrors, e.g. one can use 1001h instead.
 
 
+## Oscillator frequency
+
+I could measure an oscillator frequency of 3,259 MHz for the 3000h intonation.
+The 3001h intonation is 7% higher i.e. 3,487 MHz.
+This might/will vary with different HW.
+
+
 # "Best" way to use the uSpeech from Assembler
 
 If the uSpeech ROM is enabled the ZX Spectrum ROM is inaccessible.

@@ -98,7 +98,13 @@ The busy bit (Bit 0 of 1000h) is set and immmediately reset regularly if no new 
 
 ## More mirroring 
 
-Adress 1000h has mirrors, e.g. one can use 1001h instead.
+Adress 1000h has mirrors. All addresses
+0001XXXX XXXXXXXX (binary format)
+can be used for reading the status bit or writing an allophone.
+
+For 3000h the mirrors are: 0011XXXX XXXXXXX0 (binary).
+
+For 3001h the mirrors are: 0011XXXX XXXXXXX1 (binary).
 
 
 ## Oscillator frequency

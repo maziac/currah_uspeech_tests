@@ -24,12 +24,16 @@ T.Busse,
 
 # Building
 
-## make
-If you just want to use the program there is no need for building.
-For ease of use I also included the tap-file (currah_uspeech_tests.tap) itself.
+## Configuration
 
 If you want to build on your own you need the
 z88dk assembler (https://github.com/z88dk).
+
+Modify the asmz80 file in this directory to point to your installation of the z88dk, otherwise the project will not build.
+
+## Make
+If you just want to use the program there is no need for building.
+For ease of use I also included the tap-file (currah_uspeech_tests.tap) itself.
 
 Just run
 ~~~
@@ -38,7 +42,7 @@ Just run
 The result is a tap file that can be loaded through the tape interface of the ZX Spectrum 
 or with an emulator.
 
-## debugging
+## Debugging
 
 Please note that the makefile also produces a script file for debugging with mess.
 I.e. if you put a "; ABP" at the end of a line in the assembler sources a 

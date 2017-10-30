@@ -173,7 +173,6 @@ ct_speak_aa_with_de:
 ct_aahh_with_3000:
 	; Initialize test
 	call set_read_write_defaults
-	
 	ld de,address_3000h
 ct_aahh_with_intonation:
 	; check key release

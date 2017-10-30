@@ -33,7 +33,7 @@ read_1000h:
 ; Intonation.
 ; Write to address 3000h or 3001h
 ; de contains the pointer to address_3000h or address_3001h
-write_300xh: ;ABP
+write_300xh:
 	push hl
 	ex de,hl	; ld hl from de
 	push bc

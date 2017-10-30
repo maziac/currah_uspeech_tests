@@ -251,12 +251,12 @@ screen_table:
 	defw ct_aahh_mirror
 	defw ct_aahh_3000_mirror
 	defw ct_aahh_3001_mirror
-	defw 0
+	defw ct_aahh_at_2000
+	defw ct_aahh_in_out
 	defw ct_aahh_with_alt_3000_1_mem_write
 	defw ct_aahh_with_alt_3000_1_mem_read
 	defw ct_aahh_with_alt_3000_1_out
 	defw ct_aahh_with_alt_3000_1_in
-	defw 0
 	defw ct_all_allophones
 
 	; Text
@@ -324,17 +324,17 @@ currah_tests2_text:
 	defb AT,ct_start_y+2,ct_start_x
 	defb "2: /AA/ with 3XXXh odd"
 	defb AT,ct_start_y+3,ct_start_x
-	defb "3: -"
+	defb "3: /AA/ at 2000h"
 	defb AT,ct_start_y+4,ct_start_x
-	defb "4: /AA/ altern. 3000/1h write"
+	defb "4: /AA/ at 1000h in/out"
 	defb AT,ct_start_y+5,ct_start_x
-	defb "5: /AA/ altern. 3000/1h read"
+	defb "5: /AA/ altern. 3000/1h write"
 	defb AT,ct_start_y+6,ct_start_x
-	defb "6: /AA/ altern. 3000/1h out"
+	defb "6: /AA/ altern. 3000/1h read"
 	defb AT,ct_start_y+7,ct_start_x
-	defb "7: /AA/ altern. 3000/1h in"
+	defb "7: /AA/ altern. 3000/1h out"
 	defb AT,ct_start_y+8,ct_start_x
-	defb "8: -"
+	defb "8: /AA/ altern. 3000/1h in"
 	defb AT,ct_start_y+9,ct_start_x
 	defb "9: All allophones (5-63)"
 	defb AT,ct_start_y+10,ct_start_x

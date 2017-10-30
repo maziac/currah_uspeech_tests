@@ -37,19 +37,20 @@ ct_aahh_mirror:
 	ld (address_3000h),hl
 	; Test mirror at next address (i.e. shift bits)
 	ld de,(address_1000h)
-	or a
 	ld hl,1000h	; test on overflow
+	or a
 	sbc hl,de
 	jr nz,ct_aahh_mirror_shift
 	inc e	; de=1001h, set rightmost bit
 	jr ct_aahh_mirror_l2
+	
 ct_aahh_mirror_shift:
 	; shift
 	sla e
 	rl d
 	ld a,d
 	and 00001111b
-	or 00010000b
+	or  00010000b
 	ld d,a
 ct_aahh_mirror_l2:	
 	ld (address_1000h),de
@@ -164,6 +165,48 @@ ct_aahh_3001_mirror_l2:
 	ld (3000h),a
 	
 	jp ct_aahh_mirror_l3
+
+
+; speaks "aahh" with a mem write and read to 2000h.
+; Ends on key press.
+ct_aahh_at_2000:
+	call turn_currah_on
+	; Initialize test
+	call set_read_write_defaults
+	ld hl,2000h
+	ld (address_1000h),hl
+	ld de,address_3000h
+	jp ct_aahh_with_intonation 
+
+; speaks "aahh" with a out and in to 1000h.
+; Ends on key press.
+ct_aahh_in_out:
+	call ct_wait_on_key_release
+	call turn_currah_on
+	; Initialize test
+	call set_read_write_defaults
+	ld bc,1000h
+	
+ct_aahh_in_out_loop:
+	; check for key press
+	call ct_input
+	or a
+	jr nz,ct_aahh_in_out_end
+	
+	; wait on busy
+	;ld a,(bc)
+	in a,(c)
+	bit 0,a	; busy
+	jr nz,ct_aahh_in_out_loop
+	
+	; out to 1000h
+	ld a,18h	; /AA/
+	;ld (bc),a
+	out (c),a
+	jr ct_aahh_in_out_loop
+	
+ct_aahh_in_out_end:
+	jp ct_silence
 
 
 ; speaks /aa/ alternating with 3000h and 30001h.

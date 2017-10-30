@@ -282,6 +282,8 @@ defc ct_start_y=6
 defc ct_start_x=2
 	defb PAPER, TRANSPARENT
 	defb INK, TRANSPARENT
+	defb AT,0,29
+	defb "(1)"
 	defb AT,1,0
 	defb "01234567 ROM"
 	defb AT,ct_start_y+0,ct_start_x
@@ -313,6 +315,8 @@ defc ct_start_x=2
 currah_tests1_text_end:
 
 currah_tests2_text:
+	defb AT,0,29
+	defb "(2)"
 	defb AT,ct_start_y+0,ct_start_x
 	defb "0: /AA/ at 1XXXh"
 	defb AT,ct_start_y+1,ct_start_x
@@ -335,11 +339,11 @@ currah_tests2_text:
 	defb "9: All allophones (5-63)"
 	defb AT,ct_start_y+10,ct_start_x
 	defb "<SPACE> - next screen"
-	defb AT,21,29
-	defb "(2)"
 currah_tests2_text_end:
 
 currah_tests3_text:
+	defb AT,0,29
+	defb "(3)"
 	defb AT,ct_start_y+0,ct_start_x
 	defb "0: busy flag (/AA/ only once)"
 	defb AT,ct_start_y+1,ct_start_x
@@ -362,8 +366,6 @@ currah_tests3_text:
 	defb "9: -"
 	defb AT,ct_start_y+10,ct_start_x
 	defb "<SPACE> - next screen"
-	defb AT,21,29
-	defb "(3)"
 currah_tests3_text_end:
 
 

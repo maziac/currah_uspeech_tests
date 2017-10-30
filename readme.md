@@ -96,8 +96,11 @@ Writing to address 1000h will make uSpeech HW "speak" the written allophone.
 Normally, after the last allophone a pause (e.g. 0) should be written.
 If that is not done the last allophone is looped. 
 E.g. "/AA/" will repeated as a continuous "AAAAAAAAAAAAA".
+Only the last part of the allophone is looped, i.e. "/SH/" will become "SHHHHHHHH"
+and not "SH SH SH SH SH".
 
-The busy bit (Bit 0 of 1000h) is set and immmediately reset regularly if no new allophone is written.
+The busy bit (Bit 0 of 1000h) is set, after the allophone is done it is reset (0).
+Afterwards it is regularly set to 1 for a short time. 
 
 
 ## More mirroring 
@@ -113,8 +116,9 @@ For 3001h the mirrors are: 0011XXXX XXXXXXX1 (binary).
 
 ## Oscillator frequency
 
-I could measure an oscillator frequency of 3,259 MHz for the 3000h intonation.
-The 3001h intonation is 7% higher i.e. 3,487 MHz.
+
+The oscillator frequency for low intonation is about 3,05MHz.
+The 3001h high intonation is 7% higher i.e. 3,26MHz.
 This might/will vary with different HW.
 
 

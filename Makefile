@@ -5,7 +5,7 @@
 
 PROJ = currah_uspeech_tests
 INC_FILES = constants.inc
-ASM_FILES = ui.asm tests1.asm tests2.asm common.asm
+ASM_FILES = ui.asm tests1.asm tests2.asm tests3.asm common.asm
 OBJ_FILES = $(subst .asm,.o,$(ASM_FILES))
 LIS_FILES = $(subst .asm,.lis,$(ASM_FILES))
 #LABELS_OUT = $(PROJ).labels

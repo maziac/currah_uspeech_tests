@@ -251,8 +251,22 @@ screen_table:
 	defw ct_aahh_mirror
 	defw ct_aahh_3000_mirror
 	defw ct_aahh_3001_mirror
+	defw 0
+	defw 0
+	defw 0
+	defw 0
+	defw 0
+	defw 0
+	defw 0
+
+	; Text
+	defw currah_tests3_text, currah_tests3_text_end-currah_tests3_text
+	; Tests
 	defw ct_test_busy_aa
 	defw ct_test_busy_sh
+	defw 0
+	defw 0
+	defw 0
 	defw 0
 	defw 0
 	defw 0
@@ -281,34 +295,34 @@ defc ct_start_x=2
 	defb AT,ct_start_y+4,ct_start_x
 	defb "4: mem holes test"
 	defb AT,ct_start_y+5,ct_start_x
-	defb "5: \"aahh\" with 3000h"
+	defb "5: /AA/ with 3000h"
 	defb AT,ct_start_y+6,ct_start_x
-	defb "6: \"aahh\" with 3001h"
+	defb "6: /AA/ with 3001h"
 	defb AT,ct_start_y+7,ct_start_x
-	defb "7: \"aahh\" altern. 3000/1h"
+	defb "7: /AA/ altern. 3000/1h"
 	defb AT,ct_start_y+8,ct_start_x
-	defb "8: \"aahh\" with bit 6"
+	defb "8: /AA/ with bit 6"
 	defb AT,ct_start_y+9,ct_start_x
-	defb "9: \"aahh\" without bit 6"
+	defb "9: /AA/ without bit 6"
 	defb AT,ct_start_y+10,ct_start_x
 	defb "<SPACE> - next screen"
 	defb AT,20,3
-	defb "Currah MicroSpeech Tests v1.1"
+	defb "Currah MicroSpeech Tests v1.2"
 	defb AT,21,8
 	defb "2017, written by T.Busse"
 currah_tests1_text_end:
 
 currah_tests2_text:
 	defb AT,ct_start_y+0,ct_start_x
-	defb "0: \"aahh\" at 1XXXh"
+	defb "0: /AA/ at 1XXXh"
 	defb AT,ct_start_y+1,ct_start_x
-	defb "1: \"aahh\" with 3XXXh even"
+	defb "1: /AA/ with 3XXXh even"
 	defb AT,ct_start_y+2,ct_start_x
-	defb "2: \"aahh\" with 3XXXh odd"
+	defb "2: /AA/ with 3XXXh odd"
 	defb AT,ct_start_y+3,ct_start_x
-	defb "3: busy flag (\"aa\" only once)"
+	defb "3: -"
 	defb AT,ct_start_y+4,ct_start_x
-	defb "4: busy flag (\"sh\" only once)"
+	defb "4: -"
 	defb AT,ct_start_y+5,ct_start_x
 	defb "5: -"
 	defb AT,ct_start_y+6,ct_start_x
@@ -325,6 +339,42 @@ currah_tests2_text:
 	defb "(2)"
 currah_tests2_text_end:
 
+currah_tests3_text:
+	defb AT,ct_start_y+0,ct_start_x
+	defb "0: busy flag (/AA/ only once)"
+	defb AT,ct_start_y+1,ct_start_x
+	defb "1: busy flag (/SH/ only once)"
+	defb AT,ct_start_y+2,ct_start_x
+	defb "2: -"
+	defb AT,ct_start_y+3,ct_start_x
+	defb "3: -"
+	defb AT,ct_start_y+4,ct_start_x
+	defb "4: -"
+	defb AT,ct_start_y+5,ct_start_x
+	defb "5: -"
+	defb AT,ct_start_y+6,ct_start_x
+	defb "6: -"
+	defb AT,ct_start_y+7,ct_start_x
+	defb "7: -"
+	defb AT,ct_start_y+8,ct_start_x
+	defb "8: -"
+	defb AT,ct_start_y+9,ct_start_x
+	defb "9: -"
+	defb AT,ct_start_y+10,ct_start_x
+	defb "<SPACE> - next screen"
+	defb AT,21,29
+	defb "(3)"
+currah_tests3_text_end:
 
+if 0
+
+
+
+
+busy flag continuously
+time measurement busy after idle
+time measurement busy after allophone
+
+endif
 
 

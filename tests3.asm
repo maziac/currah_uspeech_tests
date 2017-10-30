@@ -40,10 +40,10 @@ display_hor_a:
 	ld a,l
 	and 00011111b
 	call z,reset_display_hor_a
-	; clear next byte on screen
-	xor a
-
+	
 	; clear all lines
+	xor a
+	
 	ld de,-(00100000b)
 	set 2,h
 	ld (hl),a
@@ -140,7 +140,7 @@ display_hor_a_l2:
 ; Rests the values for the display_hor_a subroutine, so that it 
 ; starts again on the left side.	
 reset_display_hor_a:
-	ld hl,0101010011100000b
+	ld hl,0101010011100001b
 	ld (display_hor_a_address),hl
 	ld a,00000001b
 	ld (display_hor_a_rotation),a
@@ -157,6 +157,42 @@ display_hor_a_delay_value:	defb 0
 display_hor_a_value:		defb 0	
 
 	
+; Displays for all 8 horizontal lines a marker indicating 0 at the left side.
+display_hor_zero_markers:
+	call reset_display_hor_a
+	inc h
+	
+	; set zero markers
+	ld a,00011100b
+	
+	ld de,-(00100000b)
+	set 2,h
+	ld (hl),a	; zero marker
+	
+	add hl,de
+	ld (hl),a	; zero marker
+	
+	add hl,de
+	ld (hl),a	; zero marker
+	
+	add hl,de
+	ld (hl),a	; zero marker
+	
+	res 2,h
+	ld de,00100000b
+	ld (hl),a	; zero marker
+	
+	add hl,de
+	ld (hl),a	; zero marker
+	
+	add hl,de
+	ld (hl),a	; zero marker
+	
+	add hl,de
+	ld (hl),a	; zero marker
+	
+	ret
+	
 
 
 ; Test if the busy signal is set even if there is no new allophone written.
@@ -167,6 +203,9 @@ ct_test_busy_aa:
 
 ct_test_busy_allophone:
 	push af
+
+	; show markers
+	call display_hor_zero_markers
 
 	; Enable Currah
 	call turn_currah_on

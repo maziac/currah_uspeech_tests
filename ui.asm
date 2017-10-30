@@ -257,7 +257,7 @@ screen_table:
 	defw 0
 	defw 0
 	defw 0
-	defw 0
+	defw ct_all_allophones
 
 	; Text
 	defw currah_tests3_text, currah_tests3_text_end-currah_tests3_text
@@ -332,7 +332,7 @@ currah_tests2_text:
 	defb AT,ct_start_y+8,ct_start_x
 	defb "8: -"
 	defb AT,ct_start_y+9,ct_start_x
-	defb "9: -"
+	defb "9: All allophones (5-63)"
 	defb AT,ct_start_y+10,ct_start_x
 	defb "<SPACE> - next screen"
 	defb AT,21,29
@@ -366,15 +366,6 @@ currah_tests3_text:
 	defb "(3)"
 currah_tests3_text_end:
 
-if 0
 
-
-
-
-busy flag continuously
-time measurement busy after idle
-time measurement busy after allophone
-
-endif
 
 

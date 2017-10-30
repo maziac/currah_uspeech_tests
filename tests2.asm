@@ -11,6 +11,7 @@
 ; - Intonation out
 ; - Intonation in
 ; - Write/read 2XXXh
+; - All allophones (5-63)
 
 
 ; sub routine to speak an "aa" allophone with intonation.
@@ -165,3 +166,53 @@ ct_aahh_3001_mirror_l2:
 	jp ct_aahh_mirror_l3
 
 
+; speaks all allophones from 5 to 63, each with a pause afterwards.
+; Used to record the allophones.
+; Intonation 3000h.
+; You can break out with a key press.
+ct_all_allophones:
+	; check key release
+	call ct_wait_on_key_release
+	; turn on
+	call turn_currah_on
+	; Initialize test
+	call set_read_write_defaults
+	; Intonation
+	ld (3000h),a
+
+	; Start at allophone 5
+	ld e,5
+	
+ct_all_allophones_loop:
+	; speak allophone
+	ld a,e
+	call ct_speak_a
+	; pause
+	ld a,4
+	call ct_speak_a
+	
+	; check for end
+	ld a,65
+	cp e
+	ret z
+
+	; next allophone
+	inc e
+	
+	; check if key pressed
+	call ct_input
+	or a
+	jr z,ct_all_allophones_loop
+	
+	ret
+
+
+; sub routine to speak the contents of a.
+ct_speak_a:
+	push af
+	; wait on sp0256
+	call ct_wait_on_sp0256
+	; speak
+	pop af
+	ld (1000h),a
+	ret

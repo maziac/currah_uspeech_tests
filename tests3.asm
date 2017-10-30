@@ -5,7 +5,10 @@
 ;-------------------------------------------------------------------------
 
 ; Tests are:
-; - busy flag
+; - busy flag once
+; - busy flag continuously
+; - time measurement busy after idle
+; - time measurement busy after allophone
 
 
 ; Test if the busy signal is set even if there is no new allophone written.

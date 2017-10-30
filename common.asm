@@ -33,23 +33,69 @@ read_1000h:
 ; Intonation.
 ; Write to address 3000h or 3001h
 ; de contains the pointer to address_3000h or address_3001h
-write_300xh:
-	ex de,hl
-	push de
-	ld e,(hl)
+write_300xh: ;ABP
+	push hl
+	ex de,hl	; ld hl from de
+	push bc
+	ld c,(hl)
 	inc hl
-	ld d,(hl)
+	ld b,(hl)
 	dec hl
-	ld (de),a
-	pop de
+	push af
+	
+write_3000xh_self_modifying_code:
+	ld (bc),a
+	nop
+	
+	pop af
+	pop bc
 	ex de,hl
+	pop hl
 	ret
+
+write_300xh_mem_write:
+	ld (bc),a
+	nop
+	
+write_300xh_mem_read:
+	ld a,(bc)
+	nop
+	
+write_300xh_out:
+	out (c),a
+
+write_300xh_in:
+	in a,(c)
+	
+; Sets the access to the 300xh addresses.
+; mem write, read on in/out.
+set_300xh_mem_write:
+	ld hl,write_300xh_mem_write
+set_300xh:
+	ld bc,2
+	ld de,write_3000xh_self_modifying_code
+	ldir
+	ret
+	
+set_300xh_mem_read:
+	ld hl,write_300xh_mem_read
+	jr set_300xh
+
+set_300xh_out:
+	ld hl,write_300xh_out
+	jr set_300xh
+
+set_300xh_in:
+	ld hl,write_300xh_in
+	jr set_300xh
 
 
 ; Default initialization for the read/write routines.
 ; Uses 100h, 3000h and 3001 as addresses and memory read/write
 ; to access the addresses.
 set_read_write_defaults:
+	; Use mem write for intonation
+	call set_300xh_mem_write
 	; Use address 3000h/3001h for intonation
 	ld hl,3000h
 	ld (address_3000h),hl

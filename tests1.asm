@@ -201,42 +201,6 @@ ct_aahh_with_3001:
 	jr ct_aahh_with_intonation
 
 
-; speaks "aahh" with a mem write to 3000h and 3001h alternating
-; about every second.
-; Ends on key press.
-ct_aahh_with_alt_3000_1:
-	; Initialize test
-	call set_read_write_defaults
-
-ct_aahh_with_alt_3000_1_start:
-	; check key release
-	call ct_wait_on_key_release
-
-ct_aahh_with_3000_1_l1:
-	; speak aa with 3000h
-	ld de,address_3000h	
-	ld b,15 ; loop count
-ct_aahh_with_3000_1_l2:
-	; speak allophone
-	call ct_speak_aa_with_de
-	; reurn if key is pressed
-	call ct_input
-	or a
-	jr nz,ct_silence
-	djnz ct_aahh_with_3000_1_l2
-
-	; speak aa with 3001h
-	ld de,address_3001h	
-	ld b,15 ; loop count
-ct_aahh_with_3000_1_l3:
-	; speak allophone
-	call ct_speak_aa_with_de
-	; reurn if key is pressed
-	call ct_input
-	or a
-	jr nz,ct_silence
-	djnz ct_aahh_with_3000_1_l3
-	jr ct_aahh_with_3000_1_l1
 
 ; speaks "aahh" with bit 6 set on every allophone.
 ; nothing is written to 3000h or 3001h.

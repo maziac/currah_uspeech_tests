@@ -241,7 +241,7 @@ screen_table:
 	defw ct_spectrum_mem_holes_test
 	defw ct_aahh_with_3000
 	defw ct_aahh_with_3001
-	defw ct_aahh_with_alt_3000_1
+	defw 0
 	defw ct_test_with_bit_6
 	defw ct_test_without_bit_6
 
@@ -252,10 +252,10 @@ screen_table:
 	defw ct_aahh_3000_mirror
 	defw ct_aahh_3001_mirror
 	defw 0
-	defw 0
-	defw 0
-	defw 0
-	defw 0
+	defw ct_aahh_with_alt_3000_1_mem_write
+	defw ct_aahh_with_alt_3000_1_mem_read
+	defw ct_aahh_with_alt_3000_1_out
+	defw ct_aahh_with_alt_3000_1_in
 	defw 0
 	defw ct_all_allophones
 
@@ -301,7 +301,7 @@ defc ct_start_x=2
 	defb AT,ct_start_y+6,ct_start_x
 	defb "6: /AA/ with 3001h"
 	defb AT,ct_start_y+7,ct_start_x
-	defb "7: /AA/ altern. 3000/1h"
+	defb "7: -"
 	defb AT,ct_start_y+8,ct_start_x
 	defb "8: /AA/ with bit 6"
 	defb AT,ct_start_y+9,ct_start_x
@@ -326,13 +326,13 @@ currah_tests2_text:
 	defb AT,ct_start_y+3,ct_start_x
 	defb "3: -"
 	defb AT,ct_start_y+4,ct_start_x
-	defb "4: -"
+	defb "4: /AA/ altern. 3000/1h write"
 	defb AT,ct_start_y+5,ct_start_x
-	defb "5: -"
+	defb "5: /AA/ altern. 3000/1h read"
 	defb AT,ct_start_y+6,ct_start_x
-	defb "6: -"
+	defb "6: /AA/ altern. 3000/1h out"
 	defb AT,ct_start_y+7,ct_start_x
-	defb "7: -"
+	defb "7: /AA/ altern. 3000/1h in"
 	defb AT,ct_start_y+8,ct_start_x
 	defb "8: -"
 	defb AT,ct_start_y+9,ct_start_x

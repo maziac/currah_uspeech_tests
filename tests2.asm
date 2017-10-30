@@ -166,6 +166,74 @@ ct_aahh_3001_mirror_l2:
 	jp ct_aahh_mirror_l3
 
 
+; speaks /aa/ alternating with 3000h and 30001h.
+; Uses mem write, mem read, out or in.
+; speaks "aahh" with a alternating to 3000h and 3001h alternating
+; about every second.
+; Ends on key press.
+ct_aahh_with_alt_3000_1:
+	; turn uSpeech on
+	call turn_currah_on
+	; check key release
+	call ct_wait_on_key_release
+
+ct_aahh_with_3000_1_l1:
+	; speak aa with 3000h
+	ld de,address_3000h	
+	ld b,15 ; loop count
+ct_aahh_with_3000_1_l2:
+	; speak allophone
+	call ct_speak_aa_with_de
+	; return if key is pressed
+	call ct_input
+	or a
+	jp nz,ct_silence
+	djnz ct_aahh_with_3000_1_l2
+
+	; speak aa with 3001h
+	ld de,address_3001h	
+	ld b,15 ; loop count
+ct_aahh_with_3000_1_l3:
+	; speak allophone
+	call ct_speak_aa_with_de
+	; return if key is pressed
+	call ct_input
+	or a
+	jp nz,ct_silence
+	djnz ct_aahh_with_3000_1_l3
+	jp ct_aahh_with_3000_1_l1
+
+
+; Alternating 3000/1h with mem write.
+ct_aahh_with_alt_3000_1_mem_write:
+	; Initialize test
+	call set_read_write_defaults
+	jp ct_aahh_with_alt_3000_1
+	
+; Alternating 3000/1h with mem read.
+ct_aahh_with_alt_3000_1_mem_read:
+	; Initialize test
+	call set_read_write_defaults
+	call set_300xh_mem_read
+	jp ct_aahh_with_alt_3000_1
+	
+; Alternating 3000/1h with out.
+ct_aahh_with_alt_3000_1_out:
+	; Initialize test
+	call set_read_write_defaults
+	call set_300xh_out
+	jp ct_aahh_with_alt_3000_1
+	
+; Alternating 3000/1h with in.
+ct_aahh_with_alt_3000_1_in:
+	; Initialize test
+	call set_read_write_defaults
+	call set_300xh_in
+	jp ct_aahh_with_alt_3000_1
+	
+	
+	
+
 ; speaks all allophones from 5 to 63, each with a pause afterwards.
 ; Used to record the allophones.
 ; Intonation 3000h.

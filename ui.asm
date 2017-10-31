@@ -264,7 +264,7 @@ screen_table:
 	; Tests
 	defw ct_test_busy_aa
 	defw ct_test_busy_sh
-	defw 0
+	defw ct_test_busy_until_key
 	defw 0
 	defw 0
 	defw 0
@@ -349,7 +349,7 @@ currah_tests3_text:
 	defb AT,ct_start_y+1,ct_start_x
 	defb "1: busy flag (/SH/ only once)"
 	defb AT,ct_start_y+2,ct_start_x
-	defb "2: -"
+	defb "2: busy flag, once/key to stop"
 	defb AT,ct_start_y+3,ct_start_x
 	defb "3: -"
 	defb AT,ct_start_y+4,ct_start_x

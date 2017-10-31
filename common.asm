@@ -238,7 +238,34 @@ print_hex_number_l1:
 	ret
 	
 	
-
+; Clears left side and bottom 3rd.
+clear_left_and_bottom:
+	; save
+	push af
+	push hl
+	push de
+	push bc
+	; left
+	xor a
+	ld hl,SCREEN
+	ld b,SCREEN_HEIGHT
+	ld de,SCREEN_WIDTH_IN_BYTES
+clear_left_and_bottom_loop:
+	ld (hl),a
+	add hl,de
+	djnz clear_left_and_bottom_loop
+	; bottom
+	ld hl,SCREEN+16*SCREEN_WIDTH_IN_BYTES*8
+	ld de,SCREEN+16*SCREEN_WIDTH_IN_BYTES*8+1
+	ld bc,8*SCREEN_WIDTH_IN_BYTES*8-1
+	ld (hl),a
+	ldir
+	; restore
+	pop bc
+	pop de
+	pop hl
+	pop af
+	ret
 
 
 ; Displays the contents of all bits of a horizontally.

@@ -14,13 +14,16 @@
 ; Test if the busy signal is set even if there is no new allophone written.
 ; With allophone /AA/.
 ct_test_busy_aa:
-	ld a,0ch	; dec bc = 0ch
+	ld a,0bh	; dec bc = 0bh
 	ld (ct_test_busy_self_modyfying),a
 	; speak one allophone
 	ld a,18h	; load allophone /AA/
 
 ct_test_busy_allophone:
 	push af
+
+	; clear part of the screen
+	call clear_left_and_bottom
 
 	; show markers
 	call display_hor_zero_markers
@@ -69,6 +72,8 @@ ct_test_busy_aa_end:
 ; Test if the busy signal is set even if there is no new allophone written.
 ; With allophone /SH/.
 ct_test_busy_sh:
+	ld a,0bh	; dec bc = 0bh
+	ld (ct_test_busy_self_modyfying),a
 	; speak one allophone
 	ld a,25h	; load allophone /SH/
 	jp ct_test_busy_allophone
@@ -83,3 +88,69 @@ ct_test_busy_until_key:
 	ld a,18h	; load allophone /AA/
 	jp ct_test_busy_allophone
 	
+
+
+; Measures the time of the busy flag.
+; 2 times are measured: 
+; 1. time between write 1000h and busy=1
+; 2. time between change busy=1/0 and busy=0/1 if write to 1000h after busy=1/0
+ct_test_busy_time_measure:
+	call clear_left_and_bottom
+	call turn_currah_on
+	; check that uSpeech is on
+	ld a,(CS_ROM_VALUE_ADDRESS)
+	cp CS_ROM_VALUE
+	jr nz,ct_test_busy_time_measure_end	; avoid executing if uSpeech is not attached.
+
+	ld bc,1000h
+	ld hl,0		; counter
+	ld de,1
+	
+	; wait until busy is 0
+ct_test_busy_time_measure_wait1:
+	ld a,(bc)
+	bit 0,a
+	jr nz,ct_test_busy_time_measure_wait1
+	
+	; write allophone
+	ld a,18h	; /AA/
+	ld (bc),a
+
+	; wait and count until busy is 1
+ct_test_busy_time_measure_wait2:
+	add hl,de
+	jr z,ct_test_busy_time_measure_overflow
+	ld a,(bc)
+	bit 0,a
+	jr z,ct_test_busy_time_measure_wait2
+	
+ct_test_busy_time_measure_overflow:
+	push hl	; save value
+	
+	; print
+	ld de,text_duration1
+	ld bc,#text_duration1_end-text_duration1
+	call print_string
+	
+	; print t1
+	pop bc
+	call print_hex_number
+	
+	
+ct_test_busy_time_measure_end:
+	call turn_currah_on
+	jp ct_silence
+	
+
+; print at left lower corner
+text_duration1:
+	defb AT,20,1
+	defb "                            "
+	defb AT,20,1
+	defb "t1="
+text_duration1_end:
+
+text_duration2:
+	defb ", "
+	defb "t2="
+text_duration2_end:

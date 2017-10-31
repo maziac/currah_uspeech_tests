@@ -265,7 +265,7 @@ screen_table:
 	defw ct_test_busy_aa
 	defw ct_test_busy_sh
 	defw ct_test_busy_until_key
-	defw 0
+	defw ct_test_busy_time_measure
 	defw 0
 	defw 0
 	defw 0
@@ -278,7 +278,7 @@ screen_table:
 
 ; Texts to show as help.
 currah_tests1_text:
-defc ct_start_y=6
+defc ct_start_y=3
 defc ct_start_x=2
 	defb PAPER, TRANSPARENT
 	defb INK, TRANSPARENT
@@ -351,7 +351,7 @@ currah_tests3_text:
 	defb AT,ct_start_y+2,ct_start_x
 	defb "2: busy flag, once/key to stop"
 	defb AT,ct_start_y+3,ct_start_x
-	defb "3: -"
+	defb "3: x" ;time measure, busy bit"
 	defb AT,ct_start_y+4,ct_start_x
 	defb "4: -"
 	defb AT,ct_start_y+5,ct_start_x

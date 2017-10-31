@@ -89,6 +89,10 @@ Bit 0 is the busy bit. After writing to 1000h it is set and reset once the allop
 
 The other bits also change their value over time. But the purpose of these bits is unknown.
 
+Bits 0, 1 and 5 contain different values.
+
+Bits 2, 3 and 4 might be equal and bit 6 and 7 might be equal.
+
 
 ## Allophone looping
 
@@ -109,9 +113,21 @@ Adress 1000h has mirrors. All addresses
 0001XXXX XXXXXXXX (binary format)
 can be used for reading the status bit or writing an allophone.
 
+2000h is no mirror of 1000h.
+
 For 3000h the mirrors are: 0011XXXX XXXXXXX0 (binary).
 
 For 3001h the mirrors are: 0011XXXX XXXXXXX1 (binary).
+
+
+## in/out
+
+Similar to address 0038h the address 1000h and 3000h can also be accessed via I/O.
+
+Instead of read/write to 1000h an 'in/out' can be used as well.
+
+For address 3000/1h an 'out' does work as well.
+An 'in' or a memory read to that address has no effect.
 
 
 ## Oscillator frequency

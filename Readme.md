@@ -38,14 +38,16 @@ The uSpeech has 4 connectors/cables: UHF-in, UHF-out, a line lead used for in or
 The <span style="text-decoration:underline;">normal setup</span> for the uSpeech was to attach it to the Spectrum and then connect the UHF-in to the UHF-out of the ZX Spectrum, the UHF-out to the TV and the line lead (as input) to the MIC output of the ZX Spectrum.
 The speech signal (together with the audio output of the ZX Spectrum) was added to the UHF-output signal of the ZX Spectrum and fed into the TV.
 
-![Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.](/pics/hw_conn_1.jpg){:class="img-responsive"}
+![Normal setup](/pics/hw_conn_1.jpg){:class="img-responsive"}
 <br>
 __Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.__
 
 The <span style="text-decoration:underline;">other setup</span> is not so well known although it is documented in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a>:
 UHF-in and UHF-out are not used, the line lead is used as output and connected to an audio amplifier. In this case the speech signal is output to the line lead. I used this setup to record speech output in some of my tests.
 
-[caption id="attachment_330" align="alignnone" width="4608"]<img class="alignnone size-full wp-image-330" src="https://obscuretronics.files.wordpress.com/2017/10/hw_conn_2.jpg" alt="hw_conn_2" width="4608" height="3456" /> Alternate setup: The Spectrum stays connected to the TV. The audio out of the uSpeech can be connected to an amplifier or tape deck.[/caption]
+![Alternate setup](/pics/hw_conn_2.jpg){:class="img-responsive"}
+<br>
+__Alternate setup: The Spectrum stays connected to the TV. The audio out of the uSpeech can be connected to an amplifier or tape deck.__
 
 Strange about this setup is that there exist mods to modify the uSpeech HW to allow line out functionality (see <a href="http://blog.bisinternet.com/retroblog/spectrums/currah-micro-speech-uspeech/">here</a> and also <a href="http://schombi.de/my-retro-collection.html">here</a>.). This wouldn't be necessary with the HW that I used. The HW in the <a href="http://blog.bisinternet.com/retroblog/spectrums/currah-micro-speech-uspeech/">link</a> is definitely a different revision, maybe it didn't came with line out functionality.
 
@@ -55,19 +57,25 @@ Opening the device (it's just clipped there are no screws) we find the main comp
 	<li><a href="http://www.futurebots.com/spo256.pdf">SP0256-AL2</a> (Narrator Spech Processor)</li>
 	<li>ULA</li>
 </ul>
-<img class="alignnone size-full wp-image-408" src="https://obscuretronics.files.wordpress.com/2017/10/hw.jpg" alt="hw" width="4608" height="3457" />
+![HW](/pics/hw.jpg){:class="img-responsive"}
+<br>
 
 The pin 12 (ser out) of the SP0256 has been removed. Maybe there is an error on that PCB revision.
 
-<img class="alignnone size-full wp-image-409" src="https://obscuretronics.files.wordpress.com/2017/10/img_20171022_204559.jpg" alt="IMG_20171022_204559" width="4608" height="3456" />
+![HW2](/pics/img_20171022_204559.jpg){:class="img-responsive"}
+<br>
 
 For completeness here is the back side:
 
-<img class="alignnone size-full wp-image-404" src="https://obscuretronics.files.wordpress.com/2017/10/img_20171022_204732-730947054.jpg" alt="img_20171022_204732-730947054.jpg" width="3000" height="2250" />
+![HW Back](/pics/img_20171022_204732-730947054.jpg){:class="img-responsive"}
+<br>
 
-I also measured the oscillator frequency. Unfortunately the frequency dropped when I reached the Osc out pin (28). So I used a trick: with the dropped frequency I measured the fequency of the speech signal. Then I put it in relation to the speech frequency without my probe connected. All in all this leads to a frequency of about 3,259 MHz. I suspect that this varies from model to model.
+I also measured the oscillator frequency. Unfortunately the frequency dropped when I reached the Osc out pin (28). So, Kio did soem simulation, the the resulting frequnecy should be about 3,05MHz.
 
-[gallery ids="415,416" type="rectangular"]
+
+![osc1](/pics/oscilloscope1.jpg){:class="img-responsive"}
+![osc2](/pics/oscilloscope2.jpg){:class="img-responsive"}
+<br>
 
 <hr />
 

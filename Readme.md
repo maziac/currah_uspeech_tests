@@ -38,6 +38,9 @@ The uSpeech has 4 connectors/cables: UHF-in, UHF-out, a line lead used for in or
 The <span style="text-decoration:underline;">normal setup</span> for the uSpeech was to attach it to the Spectrum and then connect the UHF-in to the UHF-out of the ZX Spectrum, the UHF-out to the TV and the line lead (as input) to the MIC output of the ZX Spectrum.
 The speech signal (together with the audio output of the ZX Spectrum) was added to the UHF-output signal of the ZX Spectrum and fed into the TV.
 
+![Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.](/pics/hw_conn_1.jpg){:class="img-responsive"}
+<br>
+
 [caption id="attachment_329" align="alignnone" width="4608"]<img class="alignnone size-full wp-image-329" src="https://obscuretronics.files.wordpress.com/2017/10/hw_conn_1.jpg" alt="hw_conn_1" width="4608" height="3456" /> Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.[/caption]
 
 The <span style="text-decoration:underline;">other setup</span> is not so well known although it is documented in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a>:

@@ -1,6 +1,18 @@
-# Currah uSpeech Tests
+# Currah uSpeech Tests1
+
+
+
 
 The Currah uSpeech is a speech sythesizer peripheral for the ZX Spectrum from 1983.
+<br>
+
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<br>
 
 This document is best described as a kind of amendment or complement to
 the very good description of the Currah uSpeech HW/SW in

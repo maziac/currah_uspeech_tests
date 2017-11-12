@@ -1,18 +1,3 @@
-# Currah uSpeech Tests1
-
-
-
-
-The Currah uSpeech is a speech sythesizer peripheral for the ZX Spectrum from 1983.
-<br>
-
-<video width="320" height="240" controls>
-  <source src="movie.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-
 
 <img class="" title="Currah uSpeeech" src="http://www.worldofspectrum.org/pub/sinclair/hardware-adverts/CurrahMicroSpeech.jpg" width="466" height="661" />
 
@@ -264,6 +249,13 @@ In the test pressing one of the keys 0-3 will all toggle the ROM. This can be se
 <img class="alignnone size-full wp-image-323" src="https://obscuretronics.files.wordpress.com/2017/10/test_overview.jpg" alt="test_overview" width="4608" height="3456" />
 
 In this video I press the keys repeatedly which results in enabling/disabling the ROM:
+
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
 
 [wpvideo 0CRScUDA]
 

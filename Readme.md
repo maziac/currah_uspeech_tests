@@ -62,7 +62,7 @@ Opening the device (it's just clipped there are no screws) we find the main comp
 
 The pin 12 (ser out) of the SP0256 has been removed. Maybe there is an error on that PCB revision.
 
-![HW2](/pics/nw_pin12_removed.jpg){:class="img-responsive"}
+![HW2](/pics/hw_pin12_removed.jpg){:class="img-responsive"}
 <br>
 
 For completeness here is the back side:
@@ -82,7 +82,7 @@ I also measured the oscillator frequency. Unfortunately the frequency dropped wh
 <h2 id="api">The API</h2>
 The uSpeech comes with a 2k ROM. It's main purpose is to provide speech output for the Spectrum Basic. But it also offers an API to use from machine code.
 
-Both ways are described in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a> and provide a way to pass complete sentences to the uSpeech which are turned into allophones and provided to the uSpeech HW by the ROM code.
+Both ways are described in the [Currah uSpeech_Manual](/data/currah_manual.pdf) and provide a way to pass complete sentences to the uSpeech which are turned into allophones and provided to the uSpeech HW by the ROM code.
 
 However, the machine code API is very intrusive and restrict assembler programs (games) very much in the use of the interrupt.
 
@@ -112,7 +112,9 @@ The uSpeech ROM also observes data in the RAM for a new sentence/word. This can 
 However, I was not able to see that code executing, it seemed like dead code.
 On the other hand I also tried Rockfall II. There is a very similar routine used:
 
-[caption id="attachment_122" align="alignnone" width="1000"]<img class="alignnone size-full wp-image-122" src="https://obscuretronics.files.wordpress.com/2017/09/screenshot-from-2017-09-23-20-26-35.png" alt="Screenshot from 2017-09-23 20-26-35" width="1000" height="628" /> After the port operation you can see that a read is done on 0039h of the ROM. Followed by a comparison with F1h, which translates to POP AF. The POP AF is the instruction used in the Currah ROM. In the normal Spectrum you would find E5h (PUSH HL).[/caption]
+![rockfall2](/pics/rockfall2_disassembly.png){:class="img-responsive"}
+<br>
+__After the port operation you can see that a read is done on 0039h of the ROM. Followed by a comparison with F1h, which translates to POP AF. The POP AF is the instruction used in the Currah ROM. In the normal Spectrum you would find E5h (PUSH HL).__
 
 And I could verify that this indeed was executed.
 
@@ -136,7 +138,8 @@ While testing I found some other interesting behaviour an extended the tests:
 </ol>
 Here is the test program I used:
 
-<img class="alignnone size-full wp-image-322" src="https://obscuretronics.files.wordpress.com/2017/10/test_overview_b.jpg" alt="test_overview_b" width="4608" height="3456" />
+![test_ovb](/pics/test_overview_b.jpg){:class="img-responsive"}
+<br>
 
 Source code + tap file: <a href="https://github.com/maziac/currah_uspeech_tests">https://github.com/maziac/currah_uspeech_tests</a>
 <h3>Explanations:</h3>
@@ -256,22 +259,20 @@ I.e. every operation on 0038h, let it be an IO or memory operation, an opcode fe
 
 In the test pressing one of the keys 0-3 will all toggle the ROM. This can be seen in the upper left corner. Red means that the uSpeech ROM is present (red arrow). The number below indicates the memory area. Multiply the number with 0800h to get the start address. I.e. each block represents 0800h = 2k bytes.
 
-<img class="alignnone size-full wp-image-323" src="https://obscuretronics.files.wordpress.com/2017/10/test_overview.jpg" alt="test_overview" width="4608" height="3456" />
+![test_ov](/pics/test_overview.jpg){:class="img-responsive"}
 
 In this video I press the keys repeatedly which results in enabling/disabling the ROM:
 
 <video width="320" height="240" controls>
-  <source src="videos/VID_20171018_173853.mp4" type="video/mp4">
-Your browser does not support the video tag.
+  <source src="videos/ROM_toggling.mp4" type="video/mp4">
 </video>
-
-
-[wpvideo 0CRScUDA]
 
 <strong>1000h toggling:
 </strong>Here we see that address 1000h can be used to output speech only if it is enabled by accessing address 0038h before. It is enabled together with the uSpeech ROM which can be seen by the red rectangle in the upper part.
 
-[wpvideo J0TyaYIP]
+<video width="320" height="240" controls>
+  <source src="videos/1000h_toggling.mp4" type="video/mp4">
+</video>
 
 Please note: the decreasing volume is due to the recording, in reality the volume is constant.
 
@@ -285,9 +286,11 @@ At address 2000h there is no mirroring.
 <strong>1000h reading, other bits:</strong> The picture shows in the lower half the contents of the bits read from address 1000h after an allophone was written.
 Bit 0 (busy) is shown at the bottom, above are bits 1 to 7. At the left side you see a short marker separated by 2 pixels which indicates logical 0.
 
-<img class="alignnone size-full wp-image-429" src="https://obscuretronics.files.wordpress.com/2017/10/img_20171031_142821.jpg" alt="IMG_20171031_142821" width="4608" height="3456" />
+![1000h_reading_a](/pics/1000h_reading_a.jpg){:class="img-responsive"}
 
-<img class="alignnone size-full wp-image-430" src="https://obscuretronics.files.wordpress.com/2017/10/img_20171031_142829.jpg" alt="IMG_20171031_142829" width="4608" height="3456" />
+![1000h_reading_b](/pics/1000h_reading_b.jpg){:class="img-responsive"}
+
+
 
 The bits are not floating, there seems to be some deterministic behaviour. The bits 1 to 7 seem to be behave very similar but looking into more detail not all of them contain the same value.
 

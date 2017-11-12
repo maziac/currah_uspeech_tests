@@ -40,8 +40,7 @@ The speech signal (together with the audio output of the ZX Spectrum) was added 
 
 ![Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.](/pics/hw_conn_1.jpg){:class="img-responsive"}
 <br>
-
-[caption id="attachment_329" align="alignnone" width="4608"]<img class="alignnone size-full wp-image-329" src="/pics/hw_conn_1.jpg" alt="hw_conn_1" width="460" height="345" /> Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.[/caption]
+__Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.__
 
 The <span style="text-decoration:underline;">other setup</span> is not so well known although it is documented in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a>:
 UHF-in and UHF-out are not used, the line lead is used as output and connected to an audio amplifier. In this case the speech signal is output to the line lead. I used this setup to record speech output in some of my tests.

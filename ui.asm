@@ -265,8 +265,8 @@ screen_table:
 	defw ct_test_busy_aa
 	defw ct_test_busy_sh
 	defw ct_test_busy_until_key
-	defw ct_test_busy_time_measure
-	defw 0
+	defw ct_test_busy_time_measure_with_aa
+	defw ct_test_busy_time_measure_with_jh
 	defw 0
 	defw 0
 	defw 0
@@ -309,7 +309,7 @@ defc ct_start_x=2
 	defb AT,ct_start_y+10,ct_start_x
 	defb "<SPACE> - next screen"
 	defb AT,20,3
-	defb "Currah MicroSpeech Tests v1.2"
+	defb "Currah MicroSpeech Tests v1.3"
 	defb AT,21,8
 	defb "2017, written by T.Busse"
 currah_tests1_text_end:
@@ -351,9 +351,9 @@ currah_tests3_text:
 	defb AT,ct_start_y+2,ct_start_x
 	defb "2: busy flag, once/key to stop"
 	defb AT,ct_start_y+3,ct_start_x
-	defb "3: x" ;time measure, busy bit"
+	defb "3: time busy bit, /AA/ (64ms)"
 	defb AT,ct_start_y+4,ct_start_x
-	defb "4: -"
+	defb "4: time busy bit, /JH/ (98ms)"
 	defb AT,ct_start_y+5,ct_start_x
 	defb "5: -"
 	defb AT,ct_start_y+6,ct_start_x

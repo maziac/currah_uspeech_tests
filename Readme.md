@@ -41,7 +41,7 @@ The speech signal (together with the audio output of the ZX Spectrum) was added 
 ![Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.](/pics/hw_conn_1.jpg){:class="img-responsive"}
 <br>
 
-[caption id="attachment_329" align="alignnone" width="4608"]<img class="alignnone size-full wp-image-329" src="https://obscuretronics.files.wordpress.com/2017/10/hw_conn_1.jpg" alt="hw_conn_1" width="4608" height="3456" /> Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.[/caption]
+[caption id="attachment_329" align="alignnone" width="4608"]<img class="alignnone size-full wp-image-329" src="/pics/hw_conn_1.jpg" alt="hw_conn_1" width="4608" height="3456" /> Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.[/caption]
 
 The <span style="text-decoration:underline;">other setup</span> is not so well known although it is documented in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a>:
 UHF-in and UHF-out are not used, the line lead is used as output and connected to an audio amplifier. In this case the speech signal is output to the line lead. I used this setup to record speech output in some of my tests.
@@ -254,8 +254,7 @@ In the test pressing one of the keys 0-3 will all toggle the ROM. This can be se
 In this video I press the keys repeatedly which results in enabling/disabling the ROM:
 
 <video width="320" height="240" controls>
-  <source src="movie.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
+  <source src="videos/VID_20171018_173853.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 

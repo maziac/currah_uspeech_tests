@@ -2,6 +2,6 @@
 
 ## Chapter 1
 
-[mylink](/mymd.md)
+[mylink]({% link /mymd.md %})
 
 ## Chapter 2

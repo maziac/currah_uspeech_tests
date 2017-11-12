@@ -264,7 +264,8 @@ In the test pressing one of the keys 0-3 will all toggle the ROM. This can be se
 In this video I press the keys repeatedly which results in enabling/disabling the ROM:
 
 <video width="320" height="240" controls>
-  <source src="/videos/ROM_toggling.mp4" type="video/mp4">
+  <source src="videos/ROM_toggling.mp4" type="video/mp4">
+	Your browser does not support the video tag.
 </video>
 
 <strong>1000h toggling:
@@ -272,6 +273,7 @@ In this video I press the keys repeatedly which results in enabling/disabling th
 
 <video width="320" height="240" controls>
   <source src="/videos/1000h_toggling.mp4" type="video/mp4">
+	Your browser does not support the video tag.
 </video>
 
 Please note: the decreasing volume is due to the recording, in reality the volume is constant.

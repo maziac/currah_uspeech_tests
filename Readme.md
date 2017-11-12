@@ -264,14 +264,14 @@ In the test pressing one of the keys 0-3 will all toggle the ROM. This can be se
 In this video I press the keys repeatedly which results in enabling/disabling the ROM:
 
 <video width="320" height="240" controls>
-  <source src="videos/ROM_toggling.mp4" type="video/mp4">
+  <source src="/videos/ROM_toggling.mp4" type="video/mp4">
 </video>
 
 <strong>1000h toggling:
 </strong>Here we see that address 1000h can be used to output speech only if it is enabled by accessing address 0038h before. It is enabled together with the uSpeech ROM which can be seen by the red rectangle in the upper part.
 
 <video width="320" height="240" controls>
-  <source src="videos/1000h_toggling.mp4" type="video/mp4">
+  <source src="/videos/1000h_toggling.mp4" type="video/mp4">
 </video>
 
 Please note: the decreasing volume is due to the recording, in reality the volume is constant.

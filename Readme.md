@@ -62,12 +62,12 @@ Opening the device (it's just clipped there are no screws) we find the main comp
 
 The pin 12 (ser out) of the SP0256 has been removed. Maybe there is an error on that PCB revision.
 
-![HW2](/pics/img_20171022_204559.jpg){:class="img-responsive"}
+![HW2](/pics/nw_pin12_removed.jpg){:class="img-responsive"}
 <br>
 
 For completeness here is the back side:
 
-![HW Back](/pics/img_20171022_204732-730947054.jpg){:class="img-responsive"}
+![HW Back](/pics/hw_back.jpg){:class="img-responsive"}
 <br>
 
 I also measured the oscillator frequency. Unfortunately the frequency dropped when I reached the Osc out pin (28). So, Kio did soem simulation, the the resulting frequnecy should be about 3,05MHz.

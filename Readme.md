@@ -125,7 +125,7 @@ It is strange that Rockfall uses an IO operation for uSpeech detection. A simple
 ## The Tests
 
 There were a few questions that I wanted to answer by tests:
-- **Intonation**: what does intonation mean. Is it volume or pitch? If it is frequency, what frequency is it.
+- **Intonation**: what does intonation mean. Is it volume or pitch? If it is pitch, what frequency is it.
 - Is the **ROM toggled** only by an opcode fetch or also by a normal read operation or even an IO operation on address 0038h?
 - Is address 1000h (and 3000/1h) only writable/readable if the Currah ROM is on?
 

@@ -15,7 +15,7 @@ The best source of written information about the uSpeech HW that I could find is
 
 And of course the [Currah uSpeech_Manual](/currah_manual.pdf) itself.
 
-But there were still a lot of unclarities left. Therefore I took a real uSpeech HW (thanks to <a href="http://zxsp.blogspot.de">Kio</a>) and wrote a test program to unriddle it's last mysteries.
+But there were still a lot of unclarities left. Therefore I took a real uSpeech HW (thanks to <a href="http://zxsp.blogspot.de">Kio</a>) and wrote a test program to unriddle its last mysteries.
 
 ---
 
@@ -57,7 +57,7 @@ __Alternate setup: The Spectrum stays connected to the TV. The audio out of the 
 Strange about this setup is that there exist mods to modify the uSpeech HW to allow line out functionality (see <a href="http://blog.bisinternet.com/retroblog/spectrums/currah-micro-speech-uspeech/">here</a> and also <a href="http://schombi.de/my-retro-collection.html">here</a>.). This wouldn't be necessary with the HW that I used. The HW in the <a href="http://blog.bisinternet.com/retroblog/spectrums/currah-micro-speech-uspeech/">link</a> is definitely a different revision, maybe it didn't came with line out functionality.
 
 Opening the device (it's just clipped, there are no screws) we find the main components of the uSpeech HW:
-- 2k uSpeech ROM</li>
+- 2k uSpeech ROM
 - [SP0256-AL2](http://www.futurebots.com/spo256.pdf) (Narrator Spech Processor)
 - ULA
 
@@ -130,10 +130,10 @@ There were a few questions that I wanted to answer by tests:
 - Is address 1000h (and 3000/1h) only writable/readable if the Currah ROM is on?
 
 While testing I found some other interesting behaviour an extended the tests:
-- The values of the other bits when reading 1000h.</li>
-- Mirroring of the Currah ROM.</li>
-- Is the Spectrum ROM available (above 0800h) while the Currah ROM is enabled?</li>
-- Mirroring of the addresses 1000h and 3000/1h.</li>
+- The values of the other bits when reading 1000h.
+- Mirroring of the Currah ROM.
+- Is the Spectrum ROM available (above 0800h) while the Currah ROM is enabled?
+- Mirroring of the addresses 1000h and 3000/1h.
 
 Here is the test program I used:
 
@@ -148,14 +148,17 @@ When reading from address 1000h (or mirrors) the contents of the byte is written
 
 #### out 38h:
 An
-<pre><code>ld bc,0038h
+~~~
+ld bc,0038h
 out (c),a
-</code></pre>
+~~~
 is executed. Afterwards it is checked at address 0039h+i*0800h with i in [0;7] if value 0f1h is found which is the value of the uSpeech ROM at address 0039h.
 If found the block is marked as red on screen.
-<h4>in 38h:</h4>
+
+#### in 38h:
 Same as before but a
-<pre><code>ld bc,0038h
+~~~
+ld bc,0038h
 in a,(c)
 </code></pre>
 is used.

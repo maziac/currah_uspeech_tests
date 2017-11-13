@@ -326,8 +326,14 @@ The frequency for 3001h is about 7% (x1.07) higher than that of 3000h.
 The frequency does not instantly change but it takes about 0.05 - 0.5 secs until the new frequency is settled.
 It is not necessary to write to 3001h/3001h before a write to 1000h is done. Simply the last set frequency will stay.
 
-Here is the <a href="https://raw.githubusercontent.com/maziac/currah_uspeech_tests/master/results/Alternating_3000_3001.wav">audio</a>.
+Here is the audio
+<audio controls>
+  <source src="audio/Alternating_3000_3001.wav" type="audio/wav">
+Your browser does not support the audio element.
+</audio>
 
+ <a href="https://raw.githubusercontent.com/maziac/currah_uspeech_tests/master/results/Alternating_3000_3001.wav">audio</a>.
+ 
 <strong>Allophone loop</strong>:
 One effect that I wasn't aware off I found by accident (Although it was already partly documented in <a href="http://problemkaputt.de/zxdocs.htm">http://problemkaputt.de/zxdocs.htm</a>). Whenever an allophone is written and no new allophone is written afterwards the last allophone is repeated endlessly.
 The video shows this for 2 allophones, /AA/ and /SH/.
@@ -335,7 +341,10 @@ The horizontal line at the bottom shows the value of the busy bit. I.e. it goes 
 The vertical bar shows the content of the 1000h address when read. It is a compressed view and only displayed whenever it changes.
 It seems that not the complete allophone is repeated but only the last part, i.e. you do not hear "sh sh sh sh" but "shhhhhhhh".
 
-[wpvideo lmnoe46B]
+<video width="640" height="480" controls>
+  <source src="videos/allophone_loop.mp4" type="video/mp4">
+	Your browser does not support the video tag.
+</video>
 
 <hr />
 

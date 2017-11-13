@@ -1,5 +1,8 @@
 
-<img class="" title="Currah uSpeeech" src="http://www.worldofspectrum.org/pub/sinclair/hardware-adverts/CurrahMicroSpeech.jpg" width="466" height="661" />
+# The Currah uSpeech
+
+![currah uspeech](http://www.worldofspectrum.org/pub/sinclair/hardware-adverts/CurrahMicroSpeech.jpg){:class="img-responsive"}
+
 
 The Currah uSpeech (or Currah Micro Speech) was a HW peripheral for the ZX Spectrum from 1983. It was a speech device which allowed to say words from a BASIC program. A few commercial programs/games did support it as well.  It connected to the HF- and audio-output of the spectrum and mixed it's own (speech) audio and the spectrum sound onto the HF signal. So the audio could be heard from the TV speaker.
 
@@ -15,8 +18,11 @@ But there were still a lot of unclarities left. Therefore I took a real uSpeech 
 
 <hr />
 
-<h2>Table of Contents</h2>
-<a href="#hardware">The Hardware</a>
+## Table of Contents
+
+<!-- <a href="#hardware">The Hardware</a> -->
+
+[The Hardware](#hardware)
 
 <a href="#api">The API</a>
 
@@ -32,7 +38,10 @@ But there were still a lot of unclarities left. Therefore I took a real uSpeech 
 
 <hr />
 
-<h2 id="hardware">The Hardware</h2>
+## The Harware md <a name="hardware"></a>
+
+<!-- <h2 id="hardware">The Hardware</h2> -->
+
 The uSpeech has 4 connectors/cables: UHF-in, UHF-out, a line lead used for in or output and the edge connector.
 
 The <span style="text-decoration:underline;">normal setup</span> for the uSpeech was to attach it to the Spectrum and then connect the UHF-in to the UHF-out of the ZX Spectrum, the UHF-out to the TV and the line lead (as input) to the MIC output of the ZX Spectrum.

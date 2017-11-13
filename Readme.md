@@ -4,7 +4,7 @@
 ![currah uspeech](http://www.worldofspectrum.org/pub/sinclair/hardware-adverts/CurrahMicroSpeech.jpg){:class="img-responsive"}
 
 
-The Currah uSpeech (or Currah Micro Speech) was a HW peripheral for the ZX Spectrum from 1983. It was a speech device which allowed to say words from a BASIC program. A few commercial programs/games did support it as well.  It connected to the HF- and audio-output of the spectrum and mixed it's own (speech) audio and the spectrum sound onto the HF signal. So the audio could be heard from the TV speaker.
+The Currah uSpeech (or Currah Micro Speech) was a HW peripheral for the ZX Spectrum from 1983. It was a speech device which allowed to speak words from a BASIC program. A few commercial programs/games did support it as well.  It connected to the HF- and audio-output of the spectrum and mixed it's own (speech) audio and the spectrum sound onto the HF signal. So the audio could be heard from the TV speaker.
 
 My aim is to gain enough knowledge about the Currah uSpeech and its functionality to use it in an ZX Spectrum assembler-code game.
 

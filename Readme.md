@@ -10,13 +10,17 @@ My aim is to gain enough knowledge about the Currah uSpeech and its functionalit
 
 The best source of written information about the uSpeech HW that I could find is here:
 
-<a href="http://problemkaputt.de/zxdocs.htm">http://problemkaputt.de/zxdocs.htm</a> and here <a href="https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah%20uSpeech/">https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah%20uSpeech/</a>.
+http://problemkaputt.de/zxdocs.htm
+and here 
+[https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah uSpeech/]("https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah uSpeech/")
 
-And of course the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a> itself.
+And of course the [Currah uSpeech_Manual](/currah_manual.pdf) itself.
 
 But there were still a lot of unclarities left. Therefore I took a real uSpeech HW (thanks to <a href="http://zxsp.blogspot.de">Kio</a>) and wrote a test program to unriddle it's last mysteries.
 
-<hr />
+x
+
+---
 
 ## Table of Contents
 

@@ -10,7 +10,7 @@ which describes the internals of the uSpeech.
 I have done a few more tests to unriddle some of the uncertainties.
 
 The description of the tests can be found here:
-https://obscuretronics.wordpress.com/currah-uspeech
+https://maziac.github.io/currah_uspeech_tests
 
 The project here is the test program I've used. 
 

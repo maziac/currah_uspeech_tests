@@ -160,21 +160,24 @@ Same as before but a
 ~~~
 ld bc,0038h
 in a,(c)
-</code></pre>
+~~~
 is used.
 
 #### mem write 38h:
 Same as before but a
-<pre><code>ld (0038h),a
-</code></pre>
+~~~
+ld (0038h),a
+~~~
 is used.
 
 #### mem read 38h:
 Same as before but a
-<pre><code>ld a,(0038h)
-</code></pre>
+~~~
+ld a,(0038h)
+~~~
 is used.
-<h4>mem holes test:</h4>
+
+#### mem holes test:
 This test is used to see if any Spectrum ROM is accessible if the uSpeech ROM has been activated. It reads a byte from the ROM, then switches the ROM and reads the same address and compares both values. If equal this is indicated by a red square. The addresses used for comparison are 0001h+i*0800h with i in [0;7].
 
 #### /AA/ with 3000h:
@@ -264,7 +267,8 @@ Intention was to take some pictures with an oscilloscope.
 
 **ROM toggling with 0038h:**
 Apart from the opcode fetch, the following assembler code is all valid to toggle the ROM:
-<pre><code>    ld bc,0038h
+~~~
+    ld bc,0038h
 
     ; in-operation
     in a,(c) ; out-operation. contents of a does not matter.
@@ -279,7 +283,7 @@ Apart from the opcode fetch, the following assembler code is all valid to toggle
 
     ; memory write. contents of a does not matter.
     ld (0038h),a
-</code></pre>
+~~~
 I.e. every operation on 0038h, let it be an IO or memory operation, an opcode fetch, a read or write, will enable/diable the ROM.
 
 In the test pressing one of the keys 0-3 will all toggle the ROM. This can be seen in the upper left corner. Red means that the uSpeech ROM is present (red arrow). The number below indicates the memory area. Multiply the number with 0800h to get the start address. I.e. each block represents 0800h = 2k bytes.
@@ -339,7 +343,8 @@ A write or an out to this address does work whereas a read or in operation does 
 
 **Intonation/Bit 6:**
 In my tests setting the bit 6 didn't have any effect on intonation when writing to address 1000h. The bit is only important if the machine code API from the manual is used. In this case setting bit 6 will lead to writing to memory location 3001h before the allophone is written. This leads to the different intonation. The uSpeech ROM code responsible for this is (address=0184h):
-<pre><code>    ; a contains the allophone and bit 6 for intonation
+~~~
+    ; a contains the allophone and bit 6 for intonation
     ld de,3000h
     bit 6,a
     jr z,l1
@@ -348,7 +353,7 @@ In my tests setting the bit 6 didn't have any effect on intonation when writing 
 l1:
     ld (de),a
     ld (1000h),a
-</code></pre>
+~~~
 According my measurements writing to 3000h or 3001h just changes the frequency. The volume does not change.
 The frequency for 3001h is about 7% (x1.07) higher than that of 3000h.
 The frequency does not instantly change but it takes about 0.05 - 0.5 secs until the new frequency is settled.
@@ -359,11 +364,9 @@ Here is the audio
   <source src="audio/Alternating_3000_3001.wav" type="audio/wav">
 Your browser does not support the audio element.
 </audio>
-
- <a href="https://raw.githubusercontent.com/maziac/currah_uspeech_tests/master/results/Alternating_3000_3001.wav">audio</a>.
  
 **Allophone loop:**
-One effect that I wasn't aware off I found by accident (Although it was already partly documented in <a href="http://problemkaputt.de/zxdocs.htm">http://problemkaputt.de/zxdocs.htm</a>). Whenever an allophone is written and no new allophone is written afterwards the last allophone is repeated endlessly.
+One effect that I wasn't aware off I found by accident (Although it was already partly documented in [http://problemkaputt.de/zxdocs.htm](): Whenever an allophone is written and no new allophone is written afterwards the last allophone is repeated endlessly.
 The video shows this for 2 allophones, /AA/ and /SH/.
 The horizontal line at the bottom shows the value of the busy bit. I.e. it goes up after writing the allophone and goes done to 0 when finished. But we can also see that it regularly is set to 1 although nothing is written to 1000h anymore.
 The vertical bar shows the content of the 1000h address when read. It is a compressed view and only displayed whenever it changes.
@@ -396,7 +399,8 @@ Pseudocode of the interrupt routine:
 4. Disable registers
 
 Assemblercode:
-<pre><code>    ...
+~~~
+    ...
 
     ; enable uSpeech
     ld a,(0038h)
@@ -415,7 +419,7 @@ loop:
     ld a,(0038h)
 
     ...
-</code></pre>
+~~~
 Note 1: The uSpeech HW is enabled here without any test if it is already enabled. If the interrupt routine is the only code that accesses address 0038h than no test is needed. (As this is a custom interrupt routine the normal interrupt routine which passes address 0038h is not executed. So no problem here.)
 
 Note 2: If the uSpeech HW is not attached this code will work as well (of course no speech is output). Reading from address 1000h will lead to bit 0 being set or not. If set then nothing is written to 1000h ever. If it is not set the allophone is written to 1000h which is a ROM location and therefore has no effect.
@@ -423,7 +427,8 @@ Note 2: If the uSpeech HW is not attached this code will work as well (of course
 Note 3: It is important to turn the uSpeech off after accessing it. Otherwise the ZX Spectrum ROM is not available. If you don't need the ROM you could also turn the uSpeech on only once (outside of the interrupt routine) and leave it on. But normally you would like to use some ROM routine e.g. for printing so you need to toggle the access.
 
 Note 4: If you need to test (for some reason) if the uSpeech HW is available you can use the following code:
-<pre><code>is_uspeech_available:
+~~~
+is_uspeech_available:
     di
     ; test if uSpeech is enabled
     ld a,(0039)
@@ -445,7 +450,7 @@ is_enabled:
 is_not_enabled:
     ei
     ret
-</code></pre>
+~~~
 This subroutine returns with Z-flag set if the uSpeech HW is attached.
 It works by reading an address value that differs in uSpeech and Spectrum ROM. In the example above the address 0039h is used. In the uSpeech ROM it contains 0f1h for 'pop af'. The ZX Spectrum ROM contains 0e5h for 'push hl'.
 

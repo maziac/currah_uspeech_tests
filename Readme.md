@@ -20,27 +20,25 @@ But there were still a lot of unclarities left. Therefore I took a real uSpeech 
 
 ## Table of Contents
 
-<!-- <a href="#hardware">The Hardware</a> -->
-
 [The Hardware](#hardware)
 
-<a href="#api">The API</a>
 
-<a href="#system">The System Behaviour</a>
+[The API](#api)
 
-<a href="#reverse">Some Reverse Engineering (Rockfall)</a>
+[The System Behaviour](#system)
 
-<a href="#tests">The Tests</a>
+[Some Reverse Engineering (Rockfall)](#reverse)
 
-<a href="#findings">Findings</a>
+[The Tests](#tests)
 
-<a href="#Conclusion">Conclusion</a>
+[Findings](#findings)
 
-<hr />
+[Conclusion](#conclusion)
 
-## The Harware md <a name="hardware"></a>
+---
 
-<!-- <h2 id="hardware">The Hardware</h2> -->
+<a name="hardware"></a>
+## The Harware
 
 The uSpeech has 4 connectors/cables: UHF-in, UHF-out, a line lead used for in or output and the edge connector.
 
@@ -88,7 +86,9 @@ I also measured the oscillator frequency. Unfortunately the frequency dropped wh
 
 <hr />
 
-<h2 id="api">The API</h2>
+<a name="api"></a>
+## The API
+
 The uSpeech comes with a 2k ROM. It's main purpose is to provide speech output for the Spectrum Basic. But it also offers an API to use from machine code.
 
 Both ways are described in the [Currah uSpeech_Manual](/data/currah_manual.pdf) and provide a way to pass complete sentences to the uSpeech which are turned into allophones and provided to the uSpeech HW by the ROM code.
@@ -116,7 +116,9 @@ The uSpeech ROM also observes data in the RAM for a new sentence/word. This can 
 <hr />
 
  
-<h2 id="reverse">Some Reverse Engineering</h2>
+<a name="reverse"></a>
+## Some Reverse Engineering
+
 <em>'The Rockfall case'</em>: when doing a disassembly of the rockfall game (Ian Collier) one can easily find code that does an '<em>in a,(38h)</em>' and then reads a value from ROM to see if the ROM has been toggled.
 However, I was not able to see that code executing, it seemed like dead code.
 On the other hand I also tried Rockfall II. There is a very similar routine used:
@@ -245,7 +247,9 @@ Intention was to take some pictures with an oscilloscope.
 
 <hr />
 
-<h2 id="findings">Findings</h2>
+<a name="findings"></a>
+## Findings
+
 <strong>ROM toggling with 0038h</strong>:
 Apart from the opcode fetch, the following assembler code is all valid to toggle the ROM:
 <pre><code>    ld bc,0038h
@@ -357,7 +361,9 @@ It seems that not the complete allophone is repeated but only the last part, i.e
 
 <hr />
 
-<h2 id="Conclusion">Conclusion</h2>
+<a name="conclusion"></a>
+## Conclusion
+
 My goal was to use the uSpeech output in an assembler game. So I was looking for the best way to access Currah uSpeech HW. The ways described in the manual were not suitable for me:
 <ul>
 	<li>Using the BASIC interface: does not make sense for an assembler program</li>

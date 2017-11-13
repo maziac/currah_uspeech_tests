@@ -38,7 +38,7 @@ But there were still a lot of unclarities left. Therefore I took a real uSpeech 
 ---
 
 <a name="hardware"></a>
-## The Harware
+## The Hardware
 
 The uSpeech has 4 connectors/cables: UHF-in, UHF-out, a line lead used for in or output and the edge connector.
 

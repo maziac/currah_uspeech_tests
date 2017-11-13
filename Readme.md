@@ -10,22 +10,18 @@ My aim is to gain enough knowledge about the Currah uSpeech and its functionalit
 
 The best source of written information about the uSpeech HW that I could find is here:
 
-http://problemkaputt.de/zxdocs.htm
-and here 
+[http://problemkaputt.de/zxdocs.htm]() and here 
 [https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah uSpeech/]("https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah uSpeech/")
 
 And of course the [Currah uSpeech_Manual](/currah_manual.pdf) itself.
 
 But there were still a lot of unclarities left. Therefore I took a real uSpeech HW (thanks to <a href="http://zxsp.blogspot.de">Kio</a>) and wrote a test program to unriddle it's last mysteries.
 
-x
-
 ---
 
 ## Table of Contents
 
 [The Hardware](#hardware)
-
 
 [The API](#api)
 
@@ -46,49 +42,39 @@ x
 
 The uSpeech has 4 connectors/cables: UHF-in, UHF-out, a line lead used for in or output and the edge connector.
 
-The <span style="text-decoration:underline;">normal setup</span> for the uSpeech was to attach it to the Spectrum and then connect the UHF-in to the UHF-out of the ZX Spectrum, the UHF-out to the TV and the line lead (as input) to the MIC output of the ZX Spectrum.
+The _normal setup_ for the uSpeech was to attach it to the Spectrum and then connect the UHF-in to the UHF-out of the ZX Spectrum, the UHF-out to the TV and the line lead (as input) to the MIC output of the ZX Spectrum.
 The speech signal (together with the audio output of the ZX Spectrum) was added to the UHF-output signal of the ZX Spectrum and fed into the TV.
 
 ![Normal setup](/pics/hw_conn_1.jpg){:class="img-responsive"}
-<br>
 __Normal setup: Spectrum Audio and UHF out are fed through the uSpeech which adds speech and the Spectrum audio to the UHF out.__
 
-The <span style="text-decoration:underline;">other setup</span> is not so well known although it is documented in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a>:
+The _other setup_ is not so well known although it is documented in the <a title="Currah_Manual" href="https://obscuretronics.files.wordpress.com/2017/09/currah_manual.pdf">Currah uSpeech_Manual</a>:
 UHF-in and UHF-out are not used, the line lead is used as output and connected to an audio amplifier. In this case the speech signal is output to the line lead. I used this setup to record speech output in some of my tests.
 
 ![Alternate setup](/pics/hw_conn_2.jpg){:class="img-responsive"}
-<br>
 __Alternate setup: The Spectrum stays connected to the TV. The audio out of the uSpeech can be connected to an amplifier or tape deck.__
 
 Strange about this setup is that there exist mods to modify the uSpeech HW to allow line out functionality (see <a href="http://blog.bisinternet.com/retroblog/spectrums/currah-micro-speech-uspeech/">here</a> and also <a href="http://schombi.de/my-retro-collection.html">here</a>.). This wouldn't be necessary with the HW that I used. The HW in the <a href="http://blog.bisinternet.com/retroblog/spectrums/currah-micro-speech-uspeech/">link</a> is definitely a different revision, maybe it didn't came with line out functionality.
 
-Opening the device (it's just clipped there are no screws) we find the main components of the uSpeech HW:
-<ul>
-	<li>2k uSpeech ROM</li>
-	<li><a href="http://www.futurebots.com/spo256.pdf">SP0256-AL2</a> (Narrator Spech Processor)</li>
-	<li>ULA</li>
-</ul>
+Opening the device (it's just clipped, there are no screws) we find the main components of the uSpeech HW:
+- 2k uSpeech ROM</li>
+- [SP0256-AL2](http://www.futurebots.com/spo256.pdf) (Narrator Spech Processor)
+- ULA
+
 ![HW](/pics/hw.jpg){:class="img-responsive"}
-<br>
 
 The pin 12 (ser out) of the SP0256 has been removed. Maybe there is an error on that PCB revision.
-
 ![HW2](/pics/hw_pin12_removed.jpg){:class="img-responsive"}
-<br>
 
 For completeness here is the back side:
-
 ![HW Back](/pics/hw_back.jpg){:class="img-responsive"}
-<br>
 
 I also measured the oscillator frequency. Unfortunately the frequency dropped when I reached the Osc out pin (28). So, Kio did soem simulation, the the resulting frequnecy should be about 3,05MHz.
 
-
 ![osc1](/pics/oscilloscope1.jpg){:class="img-responsive"}
 ![osc2](/pics/oscilloscope2.jpg){:class="img-responsive"}
-<br>
 
-<hr />
+---
 
 <a name="api"></a>
 ## The API
@@ -101,9 +87,11 @@ However, the machine code API is very intrusive and restrict assembler programs 
 
 A third, undocumented, API is described <a href="#Conclusion">later</a>.
 
-<hr />
+---
 
-<h2 id="system">The System Behaviour</h2>
+<a name="system"></a>
+## The System Behaviour
+
 In very brief the general behaviour of the uSpeech HW:
 
 The uSpeech comes with a 2k ROM. It is enabled with an access to address 0038h. The next access will disable the ROM again.
@@ -115,52 +103,50 @@ The uSpeech ROM code establishes the BASIC and a machine code interface.
 From BASIC you could e.g. assign the s$ (LET s$="something") and the uSpeech immeditely begins to talk. It converts words or a complete sentence into allophones and sends them to the SP0256 for output. Intonation is different for upper and lower case characters.
 
 The uSpeech ROM also observes data in the RAM for a new sentence/word. This can be used as API to a machine code program. Here, the intonation is different if bit 6 of the data is set or not.
-<h2></h2>
 
-<hr />
-
+---
  
 <a name="reverse"></a>
 ## Some Reverse Engineering
 
-<em>'The Rockfall case'</em>: when doing a disassembly of the rockfall game (Ian Collier) one can easily find code that does an '<em>in a,(38h)</em>' and then reads a value from ROM to see if the ROM has been toggled.
+__'The Rockfall case'__: when doing a disassembly of the rockfall game (Ian Collier) one can easily find code that does an _'in a,(38h)'_ and then reads a value from ROM to see if the ROM has been toggled.
 However, I was not able to see that code executing, it seemed like dead code.
 On the other hand I also tried Rockfall II. There is a very similar routine used:
-
 ![rockfall2](/pics/rockfall2_disassembly.png){:class="img-responsive"}
-<br>
 __After the port operation you can see that a read is done on 0039h of the ROM. Followed by a comparison with F1h, which translates to POP AF. The POP AF is the instruction used in the Currah ROM. In the normal Spectrum you would find E5h (PUSH HL).__
 
 And I could verify that this indeed was executed.
 
 It is strange that Rockfall uses an IO operation for uSpeech detection. A simple memory read seems much easier.
 
-<hr />
+---
 
-<h2 id="tests">The Tests</h2>
+<a name="tests"></a>
+## The Tests
+
 There were a few questions that I wanted to answer by tests:
-<ol>
-	<li><strong>Intonation</strong>: what does intonation mean. Is it volume or pitch? If it is frequency, what frequency is it.</li>
-	<li>Is the <strong>ROM toggle</strong>d only by an opcode fetch or also by a normal read operation or even an IO operation on address 0038h?</li>
-	<li>Is address 1000h (and 3000/1h) only writable/readable if the Currah ROM is on?</li>
-</ol>
+- **Intonation**: what does intonation mean. Is it volume or pitch? If it is frequency, what frequency is it.
+- Is the **ROM toggled** only by an opcode fetch or also by a normal read operation or even an IO operation on address 0038h?
+- Is address 1000h (and 3000/1h) only writable/readable if the Currah ROM is on?
+
 While testing I found some other interesting behaviour an extended the tests:
-<ol>
-	<li>The values of the other bits when reading 1000h.</li>
-	<li>Mirroring of the Currah ROM.</li>
-	<li>Is the Spectrum ROM available (above 0800h) while the Currah ROM is enabled?</li>
-	<li>Mirroring of the addresses 1000h and 3000/1h.</li>
-</ol>
+- The values of the other bits when reading 1000h.</li>
+- Mirroring of the Currah ROM.</li>
+- Is the Spectrum ROM available (above 0800h) while the Currah ROM is enabled?</li>
+- Mirroring of the addresses 1000h and 3000/1h.</li>
+
 Here is the test program I used:
 
 ![test_ovb](/pics/test_overview_b.jpg){:class="img-responsive"}
-<br>
 
 Source code + tap file: <a href="https://github.com/maziac/currah_uspeech_tests">https://github.com/maziac/currah_uspeech_tests</a>
-<h3>Explanations:</h3>
-<h4>General:</h4>
+
+### Explanations:
+
+#### General:
 When reading from address 1000h (or mirrors) the contents of the byte is written to the screen. Only changed values are written. This leads to a vertical bar. The rightmost bit is bit 0 which is known to be the busy bit (set when SP0256 is busy). The meaning of the other bits is unknown.
-<h4>out 38h:</h4>
+
+#### out 38h:
 An
 <pre><code>ld bc,0038h
 out (c),a
@@ -173,88 +159,107 @@ Same as before but a
 in a,(c)
 </code></pre>
 is used.
-<h4>mem write 38h:</h4>
+
+#### mem write 38h:
 Same as before but a
 <pre><code>ld (0038h),a
 </code></pre>
 is used.
-<h4>mem read 38h:</h4>
+
+#### mem read 38h:
 Same as before but a
 <pre><code>ld a,(0038h)
 </code></pre>
 is used.
 <h4>mem holes test:</h4>
 This test is used to see if any Spectrum ROM is accessible if the uSpeech ROM has been activated. It reads a byte from the ROM, then switches the ROM and reads the same address and compares both values. If equal this is indicated by a red square. The addresses used for comparison are 0001h+i*0800h with i in [0;7].
-<h4>/AA/ with 3000h:</h4>
+
+#### /AA/ with 3000h:
 Writes to address 3000h for low intonation and afterwards write /AA/ (18h) to address 1000h. This is done in a loop, i.e. the address 1000h is read and the next /AA/ is written when the busy bit (bit 0) is reset to 0.
 This test does not access the 0039h address. So it can be used in conjunction with the tests above (e.g. "mem write 38h") to verify the using address 1000h is only working the same time that the uSpeech ROM has been enabled.
-<h4>/AA/ with 3001h:</h4>
+
+#### /AA/ with 3001h:
 Same as above but with high intonation (address 3001h).
-<h4>/AA/ with bit 6:</h4>
+
+#### <h4>/AA/ with bit 6:
 Writes /AA/ to address 1000h with bit 6 set (18h | 40h = 58h). Doesn't writes to 3000h or 3001h at all.
 The purpose of this test is to show that bit 6 has no influence on the intonation when writing to address 1000h.
-<h4>/AA/ without bit 6:</h4>
+
+#### /AA/ without bit 6:
 Same as above but without setting bit 6.
-<h4>/AA/ at 1XXXh:</h4>
+
+#### /AA/ at 1XXXh:
 Turns the uSpeech ROM on.
 Writes /AA/ to address 1XXXh, i.e. other addresses than 1000h to see if there are mirrors of 1000h.
 Everytime you execute this test another address is used. The used addresss is printed at the bottom part of the screen.
 The tested addresses are: 1000h, 1001h, 1002h, 1004h, 1008h, 1010h, 1020h, 1040h, 1080h, 1100h, 1200h, 1400h, 1800h.
 I.e. every address line is tested once.
-<h4>/AA/ with 3XXXh even:</h4>
+
+#### /AA/ with 3XXXh even:
 Turns the uSpeech ROM on.
 Writes /AA/ to address 1000h/3XXX(even), i.e. it tests for mirrors of 3000h.
 Everytime you execute this test another address is used. The used addresss is printed at the bottom part of the screen.
 The tested addresses are all mainly even: 3000h, 3001h, 3002h, 3004h, 3008h, 3010h, 3020h, 3040h, 3080h, 3100h, 3200h, 3400h, 3800h.
 (Note: 3001h is included for validation of the algorithm.)
 I.e. every address line is tested once.
-<h4>/AA/ with 3XXXh odd:</h4>
+
+#### /AA/ with 3XXXh odd:
 Turns the uSpeech ROM on.
 Writes /AA/ to address 1000h/3XXX(odd), i.e. it tests for mirrors of 3001h.
 Everytime you execute this test another address is used. The used addresss is printed at the bottom part of the screen.
 The tested addresses are all mainly odd: 3000h, 3001h, 3003h, 3007h, 300fh, 301fh, 303fh, 307fh, 30ffh, 31ffh, 33ffh, 37ffh, 3fffh.
 (Note: 3000h is included for validation of the algorithm.)
 I.e. every address line is tested once.
-<h4>/AA/ at 2000h:</h4>
+
+#### /AA/ at 2000h:
 Turns the uSpeech ROM on.
 Writes /AA/ to address 2000h and reads from 2000h (bit 0) repeatedly.
 Used to check ifthere are mirrors at 2000h.
-<h4>/AA/ at 1000h in/out:</h4>
+
+#### /AA/ at 1000h in/out:
 Turns the uSpeech ROM on.
 Uses in/output. Outputs /AA/ to address 1000h and reads with 'in' from 1000h.
-<h4>/AA/ altern. 3000/1h write:</h4>
+
+#### /AA/ altern. 3000/1h write:
 Turns the uSpeech ROM on.
 This test is to measure the time the oscillator requires to switch from one to the other frequency.
 An /AA/ is written to 1000h/3000h for a short while then an /AA/ is written to 1000h/3001h.
 This is done in a loop until another key is pressed.
-<h4>/AA/ altern. 3000/1h read:</h4>
+
+#### /AA/ altern. 3000/1h read:
 Same as before but uses a read of address 3000/1h instead of a write.
 Used to check if a read does work as well.
-<h4> /AA/ altern. 3000/1h out:</h4>
+
+#### /AA/ altern. 3000/1h out:
 Same as before but uses an 'out (c),a' of address 3000/1h instead of a write.
 Used to check if an 'out' does work as well.
-<h4>/AA/ altern. 3000/1h in:</h4>
+
+#### /AA/ altern. 3000/1h in:
 Same as before but uses an 'in a,(c)' of address 3000/1h instead of a write.
 Used to check if an 'in' does work as well.
-<h4>All allophones (5-63):</h4>
+
+#### All allophones (5-63):
 Speaks all allophones from 5 to 63 each followed by a pause.
-<h4>busy flag (/AA/ only once):</h4>
+
+#### busy flag (/AA/ only once):
 Turns the uSpeech ROM on.
 Writes /AA/ to address 1000h once and observes the busy flag (reads address 1000h).
 You see a horizontal line with the contents of the busy flag (1/0).
 Additional (as usual) the contents of the complete byte is written as a vertical bar on the left, but only for changed values.
-<h4>busy flag (/SH/ only once):</h4>
+
+#### busy flag (/SH/ only once):
 Same as above but with allophone /SH/.
-<h4>busy flag (/SH/ only once):</h4>
+
+#### busy flag (/SH/ only once):
 Same as above but does not stop  until a key is pressed.
 Intention was to take some pictures with an oscilloscope.
 
-<hr />
+---
 
 <a name="findings"></a>
 ## Findings
 
-<strong>ROM toggling with 0038h</strong>:
+**ROM toggling with 0038h:**
 Apart from the opcode fetch, the following assembler code is all valid to toggle the ROM:
 <pre><code>    ld bc,0038h
 
@@ -285,8 +290,8 @@ In this video I press the keys repeatedly which results in enabling/disabling th
 	Your browser does not support the video tag.
 </video>
 
-<strong>1000h toggling:
-</strong>Here we see that address 1000h can be used to output speech only if it is enabled by accessing address 0038h before. It is enabled together with the uSpeech ROM which can be seen by the red rectangle in the upper part.
+**1000h toggling:**
+Here we see that address 1000h can be used to output speech only if it is enabled by accessing address 0038h before. It is enabled together with the uSpeech ROM which can be seen by the red rectangle in the upper part.
 
 <video width="640" height="480" controls>
   <source src="videos/1000h_toggling.mp4" type="video/mp4">
@@ -295,28 +300,30 @@ In this video I press the keys repeatedly which results in enabling/disabling th
 
 Please note: the decreasing volume is due to the recording, in reality the volume is constant.
 
-<strong>1000h mirroring:</strong> All addresses 1XXXh are valid for reading the status bits or writing the allophones. In binary 0001XXXX XXXXXXXX.
+**1000h mirroring:**
+All addresses 1XXXh are valid for reading the status bits or writing the allophones. In binary 0001XXXX XXXXXXXX.
 I tested the following addresses:
 1000h, 1001h, 1002h, 1004h, 1008h, 1010h, 1020h, 1040h, 1080h, 1100h, 1200h, 1400h, 1800h.
 At address 2000h there is no mirroring.
 
-<strong>1000h accesses:</strong> Instead of a read/write to this register one can use in/out instead.
+**1000h accesses:**
+Instead of a read/write to this register one can use in/out instead.
 
-<strong>1000h reading, other bits:</strong> The picture shows in the lower half the contents of the bits read from address 1000h after an allophone was written.
+**1000h reading, other bits:**
+The picture shows in the lower half the contents of the bits read from address 1000h after an allophone was written.
 Bit 0 (busy) is shown at the bottom, above are bits 1 to 7. At the left side you see a short marker separated by 2 pixels which indicates logical 0.
 
 ![1000h_reading_a](/pics/1000h_reading_a.jpg){:class="img-responsive"}
 
 ![1000h_reading_b](/pics/1000h_reading_b.jpg){:class="img-responsive"}
 
-
-
 The bits are not floating, there seems to be some deterministic behaviour. The bits 1 to 7 seem to be behave very similar but looking into more detail not all of them contain the same value.
 
 Bits 0, 1 and 5 contain different values.
 Bits 2, 3 and 4 might be equal and bit 6 and 7 might be equal.
 
-<strong>30001h/3001h mirroring:</strong> Very similar behaviour here. All addresses are mirrored. It is only important if the address is even or odd.
+**30001h/3001h mirroring:**
+Very similar behaviour here. All addresses are mirrored. It is only important if the address is even or odd.
 <span style="text-decoration:underline;">Mirrors for 3000h:</span> In binary 0011XXXX XXXXXXX0.
 <span style="text-decoration:underline;">Mirrors for 3001h:</span> In binary 0011XXXX XXXXXXX1.
 I tested for 3000h:
@@ -324,9 +331,10 @@ I tested for 3000h:
 And for 3001h:
 3003h, 3007h, 300Fh, 301Fh, 303Fh, 307Fh, 30FFh, 31FFh, 33FFh, 37FFh, 3FFFh.
 
-<strong>30001h/3001h accesses: </strong>A write or an out to this address does work whereas a read or in operation does not.
+**30001h/3001h accesses:**
+A write or an out to this address does work whereas a read or in operation does not.
 
-<strong>Intonation/Bit 6</strong>:
+**Intonation/Bit 6:**
 In my tests setting the bit 6 didn't have any effect on intonation when writing to address 1000h. The bit is only important if the machine code API from the manual is used. In this case setting bit 6 will lead to writing to memory location 3001h before the allophone is written. This leads to the different intonation. The uSpeech ROM code responsible for this is (address=0184h):
 <pre><code>    ; a contains the allophone and bit 6 for intonation
     ld de,3000h
@@ -351,7 +359,7 @@ Your browser does not support the audio element.
 
  <a href="https://raw.githubusercontent.com/maziac/currah_uspeech_tests/master/results/Alternating_3000_3001.wav">audio</a>.
  
-<strong>Allophone loop</strong>:
+**Allophone loop:**
 One effect that I wasn't aware off I found by accident (Although it was already partly documented in <a href="http://problemkaputt.de/zxdocs.htm">http://problemkaputt.de/zxdocs.htm</a>). Whenever an allophone is written and no new allophone is written afterwards the last allophone is repeated endlessly.
 The video shows this for 2 allophones, /AA/ and /SH/.
 The horizontal line at the bottom shows the value of the busy bit. I.e. it goes up after writing the allophone and goes done to 0 when finished. But we can also see that it regularly is set to 1 although nothing is written to 1000h anymore.
@@ -363,32 +371,27 @@ It seems that not the complete allophone is repeated but only the last part, i.e
 	Your browser does not support the video tag.
 </video>
 
-<hr />
+---
 
 <a name="conclusion"></a>
 ## Conclusion
 
 My goal was to use the uSpeech output in an assembler game. So I was looking for the best way to access Currah uSpeech HW. The ways described in the manual were not suitable for me:
-<ul>
-	<li>Using the BASIC interface: does not make sense for an assembler program</li>
-	<li>The described machine code API: This has several issues:
-<ul>
-	<li>Allophones can't be input directly. The input is done as a sentence that is broken done into allophones by the uSpeech ROM.</li>
-	<li>It uses memory at the end of the RAM which conflicts with custom interrupts routines,</li>
-</ul>
-</li>
-</ul>
+- Using the BASIC interface: does not make sense for an assembler program</li>
+- The described machine code API: This has several issues:
+	- Allophones can't be input directly. The input is done as a sentence that is broken done into allophones by the uSpeech ROM.
+	- It uses memory at the end of the RAM which conflicts with custom interrupts routines,</li>
+
 So the approach is to control the uSpeech HW directly. I have no need for intonation so it's enough to deal with addresses 0038h and 1000h.
 
 To avoid a busy loop while waiting to send the next allophone to the SP256 the speech routine has to be served in an interrupt which polls the busy flag and (if not busy) writes the next allophone.
 
 Pseudocode of the interrupt routine:
-<ol>
-	<li><em>Enable registers</em></li>
-	<li><em>Check if SP0256 busy</em></li>
-	<li><em>If not: write allophone</em></li>
-	<li><em>Disable registers</em></li>
-</ol>
+1. Enable registers
+2. Check if SP0256 busy
+3. If not: write allophone
+4. Disable registers
+
 Assemblercode:
 <pre><code>    ...
 

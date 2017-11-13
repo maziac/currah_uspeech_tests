@@ -85,7 +85,7 @@ Both ways are described in the [Currah uSpeech_Manual](/data/currah_manual.pdf)Â
 
 However, the machine code API is very intrusive and restrict assembler programs (games) very much in the use of the interrupt.
 
-A third, undocumented, API is described <a href="#Conclusion">later</a>.
+A third, undocumented, API is described [later](#conclusion).
 
 ---
 
@@ -284,7 +284,7 @@ Apart from the opcode fetch, the following assembler code is all valid to toggle
     ; memory write. contents of a does not matter.
     ld (0038h),a
 ~~~
-I.e. every operation on 0038h, let it be an IO or memory operation, an opcode fetch, a read or write, will enable/diable the ROM.
+I.e. every operation on 0038h, let it be an IO or memory operation, an opcode fetch, a read or write, will enable/disable the ROM.
 
 In the test pressing one of the keys 0-3 will all toggle the ROM. This can be seen in the upper left corner. Red means that the uSpeech ROM is present (red arrow). The number below indicates the memory area. Multiply the number with 0800h to get the start address. I.e. each block represents 0800h = 2k bytes.
 
@@ -366,7 +366,7 @@ Your browser does not support the audio element.
 </audio>
  
 **Allophone loop:**
-One effect that I wasn't aware off I found by accident (Although it was already partly documented in [http://problemkaputt.de/zxdocs.htm](): Whenever an allophone is written and no new allophone is written afterwards the last allophone is repeated endlessly.
+One effect that I wasn't aware off I found by accident (although it was already partly documented in [http://problemkaputt.de/zxdocs.htm]()): Whenever an allophone is written and no new allophone is written afterwards the last allophone is repeated endlessly.
 The video shows this for 2 allophones, /AA/ and /SH/.
 The horizontal line at the bottom shows the value of the busy bit. I.e. it goes up after writing the allophone and goes done to 0 when finished. But we can also see that it regularly is set to 1 although nothing is written to 1000h anymore.
 The vertical bar shows the content of the 1000h address when read. It is a compressed view and only displayed whenever it changes.

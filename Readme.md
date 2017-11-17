@@ -13,7 +13,7 @@ The best source of written information about the uSpeech HW that I could find is
 [http://problemkaputt.de/zxdocs.htm]() and here 
 [https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah uSpeech/]("https://k1.spdns.de/Vintage/Sinclair/82/Peripherals/Currah uSpeech/")
 
-And of course the [Currah uSpeech_Manual](/currah_manual.pdf) itself.
+And of course the [Currah uSpeech_Manual](/data/currah_manual.pdf) itself.
 
 But there were still a lot of unclarities left. Therefore I took a real uSpeech HW (thanks to <a href="http://zxsp.blogspot.de">Kio</a>) and wrote a test program to unriddle its last mysteries.
 

@@ -69,7 +69,7 @@ The pin 12 (ser out) of the SP0256 has been removed. Maybe there is an error on 
 For completeness here is the back side:
 ![HW Back](/pics/hw_back.jpg){:class="img-responsive"}
 
-I also measured the oscillator frequency. Unfortunately the frequency dropped when I reached the Osc out pin (28). So, Kio did soem simulation, the the resulting frequnecy should be about 3,05MHz.
+I also measured the oscillator frequency. Unfortunately the frequency dropped when I reached the Osc out pin (28). So, Kio did some simulation, the resulting frequency should be about 3,05MHz.
 
 ![osc1](/pics/oscilloscope1.jpg){:class="img-responsive"}
 ![osc2](/pics/oscilloscope2.jpg){:class="img-responsive"}
@@ -329,7 +329,7 @@ The bits are not floating, there seems to be some deterministic behaviour. The b
 Bits 0, 1 and 5 contain different values.
 Bits 2, 3 and 4 might be equal and bit 6 and 7 might be equal.
 
-**30001h/3001h mirroring:**
+**3001h/3001h mirroring:**
 Very similar behaviour here. All addresses are mirrored. It is only important if the address is even or odd.
 <span style="text-decoration:underline;">Mirrors for 3000h:</span> In binary 0011XXXX XXXXXXX0.
 <span style="text-decoration:underline;">Mirrors for 3001h:</span> In binary 0011XXXX XXXXXXX1.
@@ -338,7 +338,7 @@ I tested for 3000h:
 And for 3001h:
 3003h, 3007h, 300Fh, 301Fh, 303Fh, 307Fh, 30FFh, 31FFh, 33FFh, 37FFh, 3FFFh.
 
-**30001h/3001h accesses:**
+**3001h/3001h accesses:**
 A write or an out to this address does work whereas a read or in operation does not.
 
 **Intonation/Bit 6:**
@@ -383,10 +383,10 @@ It seems that not the complete allophone is repeated but only the last part, i.e
 ## Conclusion
 
 My goal was to use the uSpeech output in an assembler game. So I was looking for the best way to access Currah uSpeech HW. The ways described in the manual were not suitable for me:
-- Using the BASIC interface: does not make sense for an assembler program</li>
+- Using the BASIC interface: does not make sense for an assembler program
 - The described machine code API: This has several issues:
 	- Allophones can't be input directly. The input is done as a sentence that is broken done into allophones by the uSpeech ROM.
-	- It uses memory at the end of the RAM which conflicts with custom interrupts routines,</li>
+	- It uses memory at the end of the RAM which conflicts with custom interrupts routines,
 
 So the approach is to control the uSpeech HW directly. I have no need for intonation so it's enough to deal with addresses 0038h and 1000h.
 

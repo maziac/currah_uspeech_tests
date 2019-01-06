@@ -29,7 +29,7 @@
             "listFiles": [
                 {
                     "path": "currah_uspeech_tests.lis",
-                    "asm": "sjasm",
+                    "asm": "z88dk",
                     "addOffset": 32768
                 }
             ],

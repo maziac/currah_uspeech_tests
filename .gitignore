@@ -1,0 +1,7 @@
+*.o
+*.bin
+*.map
+*.sym
+*.lis
+dbg_*
+.tmp/

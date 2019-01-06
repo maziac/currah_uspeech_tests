@@ -1,0 +1,48 @@
+{
+    // Verwendet IntelliSense zum Ermitteln möglicher Attribute.
+    // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+    // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "z80-debug",
+            "request": "launch",
+            "name": "Z80 Debugger",
+            "zhostname": "localhost",
+            "zport": 10000,
+            "topOfStack": "stack_top",
+            "resetOnLaunch": true,
+            "skipInterrupt": true,
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                //"-wpmem enable",
+                //"-assert enable",
+                //"-e set-fast-breakpoint 08h"
+                //"-e sb 90 ENTERROM=1",
+                //"-e set-breakpointaction 90 prints ENTERROM",
+                //"-sprites",
+                //"-patterns"
+            ],
+            "disassemblerArgs": {
+                "esxdosRst": true
+            },
+            "listFiles": [
+                {
+                    "path": "currah_uspeech_tests.lis",
+                    "asm": "sjasm",
+                    "addOffset": 32768
+                }
+            ],
+            
+            "load": "currah_uspeech_tests.sna",
+
+            "log": {
+                "channelOutputEnabled": true
+            },
+            "logSocket": {
+                "channelOutputEnabled": true
+            },
+            "socketTimeout": 50,    // 50 secs for debugging
+        }
+    ]
+}

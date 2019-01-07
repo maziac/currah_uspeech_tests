@@ -3,5 +3,6 @@
 *.map
 *.sym
 *.lis
+*.err
 dbg_*
 .tmp/

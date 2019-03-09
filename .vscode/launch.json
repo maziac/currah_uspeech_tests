@@ -30,7 +30,8 @@
                 {
                     "path": "currah_uspeech_tests.lis",
                     "asm": "z88dk",
-                    "addOffset": 32768
+                    "addOffset": 32768,
+                    //"srcDirs": []
                 }
             ],
             

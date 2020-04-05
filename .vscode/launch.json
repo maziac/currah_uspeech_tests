@@ -5,12 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "z80-debug",
+            "type": "dezog",
             "request": "launch",
-            "name": "Z80 Debugger",
-            "zhostname": "localhost",
-            "zport": 10000,
-            "topOfStack": "stack_top",
+            "name": "Internal Simulator",
+            "remoteType": "zsim",
+            "zsim": {
+                "loadZxRom": true
+            },
             "resetOnLaunch": true,
             "skipInterrupt": true,
             "startAutomatically": false,
@@ -35,16 +36,49 @@
                     //"srcDirs": []
                 }
             ],
-            
+            "rootFolder": "${workspaceFolder}",
+            //"topOfStack": "stack_top",
             "load": "currah_uspeech_tests.sna",
+        },
 
-            "log": {
-                "channelOutputEnabled": true
+
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "ZEsarUX",
+            "remoteType": "zrcp",
+            "zrcp": {
+                "hostname": "localhost",
+                "port": 10000,
+                "socketTimeout": 50, // 50 secs for debugging
             },
-            "logSocket": {
-                "channelOutputEnabled": true
+            "resetOnLaunch": true,
+            "skipInterrupt": true,
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                //"-wpmem enable",
+                //"-assert enable",
+                //"-e set-fast-breakpoint 08h"
+                //"-e sb 90 ENTERROM=1",
+                //"-e set-breakpointaction 90 prints ENTERROM",
+                //"-sprites",
+                //"-patterns"
+            ],
+            "disassemblerArgs": {
+                "esxdosRst": true
             },
-            "socketTimeout": 50,    // 50 secs for debugging
+            "listFiles": [
+                {
+                    "path": "currah_uspeech_tests.lis",
+                    "asm": "z88dk",
+                    "addOffset": 32768,
+                    "mainFile": "currah_uspeech_tests.asm",
+                    //"srcDirs": []
+                }
+            ],
+            "rootFolder": "${workspaceFolder}",
+            //"topOfStack": "stack_top",
+            "load": "currah_uspeech_tests.sna",
         }
     ]
 }

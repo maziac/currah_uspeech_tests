@@ -59,7 +59,7 @@ ct_aahh_mirror_l2:
 ct_aahh_mirror_l3:
 	; print
 	ld de,text_aahh_mirror_address
-	ld bc,#text_aahh_mirror_address_end-text_aahh_mirror_address
+	ld bc,text_aahh_mirror_address_end-text_aahh_mirror_address
 	call print_string
 	pop bc
 	call print_hex_number	

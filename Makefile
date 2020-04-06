@@ -1,19 +1,19 @@
 # Makefile 
 # Uses z88dk.
-# Just adjust ASSEMBLER, LINKER to your needs.
+# Just adjust ASSEMBLER and APPMAKE to your needs.
 # APPMAKE will create the tap or sna binaries.
 
 PROJ = currah_uspeech_tests
 INC_FILES = constants.inc
-ASM_FILES = ui.asm tests1.asm tests2.asm tests3.asm common.asm
-OBJ_FILES = $(subst .asm,.o,$(ASM_FILES))
-LIS_FILES = $(subst .asm,.lis,$(ASM_FILES))
+#ASM_FILES = ui.asm tests1.asm tests2.asm tests3.asm common.asm
+#OBJ_FILES = $(subst .asm,.o,$(ASM_FILES))
+#LIS_FILES = $(subst .asm,.lis,$(ASM_FILES))
 #LABELS_OUT = $(PROJ).labels
 # The assembler output listing file:
 LIST_OUT = $(PROJ).list
-ASSEMBLER = ../../z88dk/bin/z80asm
-LINKER = ../../z88dk/bin/z80asm
-APPMAKE = export ZCCCFG="/Volumes/Macintosh HD 2/Projects/zesarux/z88dk/src/appmake"; ../../z88dk/bin/appmake
+ASSEMBLER = ../../z88dk/z88dk.bin/bin/z80asm
+#LINKER = ../../z88dk/z88dk.bin/bin/z80asm
+APPMAKE = export ZCCCFG="/Volumes/SDDPCIE2TB/Projects/zxspectrum/z88dk/z88dk.bin/src/appmake"; ../../z88dk/z88dk.bin/bin/appmake
 ORG = 32768
 DBG_BP = dbg_breakpoint.tmp
 DBG_CUSTOM = debug.scpt

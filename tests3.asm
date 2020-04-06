@@ -173,7 +173,7 @@ ct_test_busy_time_measure_wait4:
 	
 	; print t3
 	ld de,text_duration3
-	ld bc,#text_duration3_end-text_duration3
+	ld bc,text_duration3_end-text_duration3
 	call print_string
 	
 	ld a,TIME_MEASURE_LOOP_COUNT
@@ -193,7 +193,7 @@ ct_test_busy_time_print_loop:
 	
 	; print t1
 	ld de,text_duration1
-	ld bc,#text_duration1_end-text_duration1
+	ld bc,text_duration1_end-text_duration1
 	call print_string
 	
 	pop hl
@@ -205,7 +205,7 @@ ct_test_busy_time_print_loop:
 	
 	; print t2
 	ld de,text_duration2
-	ld bc,#text_duration2_end-text_duration2
+	ld bc,text_duration2_end-text_duration2
 	call print_string
 
 	; t2

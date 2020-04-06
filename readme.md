@@ -29,7 +29,7 @@ T.Busse,
 If you want to build on your own you need the
 z88dk assembler (https://github.com/z88dk).
 
-Modify the asmz80 file in this directory to point to your installation of the z88dk, otherwise the project will not build.
+Adjust the ASSEMBLER and APPMAKE paths in the Makefile.
 
 ## Make
 If you just want to use the program there is no need for building.
@@ -46,7 +46,7 @@ or with an emulator.
 
 Please note that the makefile also produces a script file for debugging with mess.
 I.e. if you put a "; ABP" at the end of a line in the assembler sources a 
-dbg_script.dbg is created that already sets the correct breakpoints.
+dbg_script.dbg is created that already sets the correct breakpoints for MAME.
 If you want to add custom options put them in debug.scpt.
 
 Mess needs to be started with the options "-debug -debugscript dbg_script.dbg".

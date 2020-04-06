@@ -113,7 +113,7 @@ ct_wait_on_input:
 	add hl,hl
 	add hl,hl
 	; draw a yellow color line
-	ld a,#YELLOW<<3	; Yellow background
+	ld a,YELLOW<<3	; Yellow background
 	ld de,SCREEN_COLOR+1
 	add hl,de
 	ld bc,SCREEN_WIDTH_IN_BYTES-1

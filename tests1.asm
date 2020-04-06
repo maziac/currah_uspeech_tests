@@ -60,8 +60,8 @@ ct_draw_mirror_bar:
 	; draw bar in first line
 	ld b,4000h/CS_ROM_SIZE/2
 	ld hl,SCREEN_COLOR+020h
-	ld e,#(WHITE<<3)+BLACK
-	ld d,#(BLACK<<3)+WHITE
+	ld e,BLACK+(WHITE<<3)
+	ld d,WHITE+(BLACK<<3)
 ct_mirror_bar_l1:
 	ld (hl),e
 	inc hl

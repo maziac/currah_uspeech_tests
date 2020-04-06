@@ -30,8 +30,8 @@
             "listFiles": [
                 {
                     "path": "currah_uspeech_tests.lis",
+                    "z88dkMapFile": "currah_uspeech_tests.map",
                     "asm": "z88dk",
-                    "addOffset": 32768,
                     "mainFile": "currah_uspeech_tests.asm",
                     //"srcDirs": []
                 }
@@ -71,7 +71,7 @@
                 {
                     "path": "currah_uspeech_tests.lis",
                     "asm": "z88dk",
-                    "addOffset": 32768,
+                    "z88dkMapFile": "currah_uspeech_tests.map",
                     "mainFile": "currah_uspeech_tests.asm",
                     //"srcDirs": []
                 }

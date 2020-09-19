@@ -27,11 +27,10 @@
             "disassemblerArgs": {
                 "esxdosRst": true
             },
-            "listFiles": [
+            "z88dkListFiles": [
                 {
                     "path": "currah_uspeech_tests.lis",
                     "z88dkMapFile": "currah_uspeech_tests.map",
-                    "asm": "z88dk",
                     "mainFile": "currah_uspeech_tests.asm",
                     //"srcDirs": []
                 }
@@ -67,10 +66,9 @@
             "disassemblerArgs": {
                 "esxdosRst": true
             },
-            "listFiles": [
+            "z88dkListFiles": [
                 {
                     "path": "currah_uspeech_tests.lis",
-                    "asm": "z88dk",
                     "z88dkMapFile": "currah_uspeech_tests.map",
                     "mainFile": "currah_uspeech_tests.asm",
                     //"srcDirs": []

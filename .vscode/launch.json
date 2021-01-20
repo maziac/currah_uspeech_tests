@@ -10,10 +10,11 @@
             "name": "Internal Simulator",
             "remoteType": "zsim",
             "zsim": {
-                "loadZxRom": true
+                "memoryModel": "ZX48K",
+                "vsyncInterrupt": true,
+                "ulaScreen": true,
+                "zxKeyboard": true,
             },
-            "resetOnLaunch": true,
-            "skipInterrupt": true,
             "startAutomatically": false,
             "commandsAfterLaunch": [
                 //"-wpmem enable",
@@ -51,8 +52,6 @@
                 "port": 10000,
                 "socketTimeout": 50, // 50 secs for debugging
             },
-            "resetOnLaunch": true,
-            "skipInterrupt": true,
             "startAutomatically": false,
             "commandsAfterLaunch": [
                 //"-wpmem enable",

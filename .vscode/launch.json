@@ -68,7 +68,7 @@
             "z88dk": [
                 {
                     "path": "currah_uspeech_tests.lis",
-                    "z88dkMapFile": "currah_uspeech_tests.map",
+                    "mapFile": "currah_uspeech_tests.map",
                     "mainFile": "currah_uspeech_tests.asm",
                     //"srcDirs": []
                 }
@@ -76,6 +76,7 @@
             "rootFolder": "${workspaceFolder}",
             //"topOfStack": "stack_top",
             "load": "currah_uspeech_tests.sna",
+            //"load": "currah_uspeech_tests.tap",
         }
     ]
 }
